@@ -30,6 +30,8 @@ public class Main extends Application{
         loader.setLocation(Main.class.getResource("vue.fxml"));
         rootlayout = (Scene) loader.load();
         primaryStage.setScene(rootlayout);
+        primaryStage.setMinHeight(550);
+        primaryStage.setMinWidth(1050);
         primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

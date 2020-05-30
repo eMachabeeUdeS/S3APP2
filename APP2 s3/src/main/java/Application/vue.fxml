@@ -21,7 +21,7 @@
 
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <root>
-      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="966.0">
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
          <top>
             <MenuBar BorderPane.alignment="CENTER">
               <menus>
@@ -68,14 +68,14 @@
                                         <MenuItem mnemonicParsing="false" text="Action 2" />
                                       </items>
                                     </MenuButton>
-                                    <Button mnemonicParsing="false" />
+                                    <Button mnemonicParsing="false" text="←" />
                                     <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="0.0" />
                                     <Label text="Alignment:" />
-                                    <Button mnemonicParsing="false" text="Gauche" />
-                                    <Button mnemonicParsing="false" text="Top" />
+                                    <Button mnemonicParsing="false" text="⭰" />
+                                    <Button mnemonicParsing="false" text="⭱" />
                                     <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
                                     <Label text="Inversion:" />
-                                    <Button mnemonicParsing="false" />
+                                    <Button mnemonicParsing="false" text="BoutonInversion" />
                                 </items>
                               </ToolBar>
                               <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
@@ -106,7 +106,7 @@
                                     </Accordion>
                                     <ScrollPane prefHeight="300.0" prefWidth="214.0">
                                        <content>
-                                          <Canvas height="462.0" width="629.0" />
+                                          <Canvas height="660.0" width="1150.0" />
                                        </content>
                                     </ScrollPane>
                                 </items>
