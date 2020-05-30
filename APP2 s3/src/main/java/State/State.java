@@ -2,6 +2,6 @@ package State;
 
 public interface State {
 	
-	public void editStatusBar();
+	public String editStatusBar();
 	public String getEtat();
 }

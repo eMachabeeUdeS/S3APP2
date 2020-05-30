@@ -1,18 +1,11 @@
 package State;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-
 public class InfoModeState implements State {
 
-	@FXML
-	private TextField state_id;
-	
 	@Override
-	@FXML
-	public void editStatusBar() {
+	public String editStatusBar() {
 		
-		state_id.setText("Get information on the software");
+		return "Get information on the software";
 	}
 
 	@Override
