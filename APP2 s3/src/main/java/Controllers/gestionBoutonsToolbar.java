@@ -24,6 +24,8 @@ public class gestionBoutonsToolbar {
 	ShapeFactory energy = new ShapeFactoryEnergy();
 	ShapeFactory strategy = new ShapeFactoryStrategy();
 	ShapeFactory model = new ShapeFactoryModel();
+	ClipboardContent content = new ClipboardContent();
+	Dragboard dragboard;
 	
 	Shape c = energy.GetShape(eShape.CARRE);
 	
@@ -141,8 +143,7 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void CarreEnergyDragDetected(MouseEvent event) {
-		Dragboard dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);
-		ClipboardContent content = new ClipboardContent();
+		dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);
 		content.putString("carre_energy");
 		dragboard.setContent(content);
 		event.consume();
@@ -150,7 +151,9 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void CanvasDragDrop(MouseEvent event) {
-		System.out.println("test");
+		double positionX = event.getX();
+		double positionY = event.getY();
+		
 		event.consume();
 	}
 	
