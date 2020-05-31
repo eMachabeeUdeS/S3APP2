@@ -5,11 +5,30 @@ import javafx.scene.control.*;
 import javafx.event.*;
 import Controllers.*;
 import State.*;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.control.ListView;
+import models.*;
+import models.ShapeFactory.eShape;
 
 public class gestionBoutonsToolbar {
 	State etat;
+	Ellipse ellipse = new Ellipse();
+	ShapeFactory inversion = new ShapeFactoryInversion();
+	ShapeFactory energy = new ShapeFactoryEnergy();
+	ShapeFactory strategy = new ShapeFactoryStrategy();
+	ShapeFactory model = new ShapeFactoryModel();
 	
-	Invoker_Command_Toolbar invoker;
+	Shape c = energy.GetShape(eShape.CARRE);
+	
+	@FXML
+	private Rectangle carre_energy;
 	
 	@FXML
 	private Button buttonPlus;
@@ -55,63 +74,54 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void btnPlusClick (ActionEvent event) {
-	//invoker.commands[0].execute();
 	etat = new AddModeState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnFullscreenClick (ActionEvent event) {
-	//invoker.commands[1].execute();
 	etat = new FullscreenState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnMarkerClick (ActionEvent event) {
-	//invoker.commands[2].execute();
 	etat = new MarkerState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnMoveClick (ActionEvent event) {
-	//invoker.commands[3].execute();
 	etat = new MoveModeState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnCrayonClick (ActionEvent event) {
-	//invoker.commands[4].execute();
 	etat = new CrayonModeState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnInfoClick (ActionEvent event) {
-	//invoker.commands[5].execute();
 	etat = new InfoModeState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnPictureClick (ActionEvent event) {
-	//invoker.commands[6].execute();
 	etat = new PictModeState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnArrowClick (ActionEvent event) {
-	//invoker.commands[7].execute();
 	etat = new ArrowState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnLeftAlignmentClick (ActionEvent event) {
-	//invoker.commands[8].execute();
 	etat = new LeftAlignmentState();
 	state_id.setText(etat.editStatusBar());
 	}
@@ -119,16 +129,41 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void btnTopAlignmentClick (ActionEvent event) {
-	//invoker.commands[9].execute();
 	etat = new TopAlignmentState();
 	state_id.setText(etat.editStatusBar());
 	}
 	
 	@FXML
 	void btnInversionClick (ActionEvent event) {
-	//invoker.commands[10].execute();
 	etat = new InversionModeState();
 	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void CarreEnergyDragDetected(MouseEvent event) {
+		Dragboard dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);
+		ClipboardContent content = new ClipboardContent();
+		content.putString("carre_energy");
+		dragboard.setContent(content);
+		event.consume();
+	}
+	
+	@FXML
+	void CanvasDragDrop(MouseEvent event) {
+		System.out.println("test");
+		event.consume();
+	}
+	
+	@FXML
+	void SceneDragOver(DragEvent event) {
+		event.acceptTransferModes(TransferMode.ANY);
+		event.consume();
+	}
+	
+	@FXML
+	void CanvasDragOver(DragEvent event) {
+		event.acceptTransferModes(TransferMode.ANY);
+		event.consume();
 	}
 	
 }
