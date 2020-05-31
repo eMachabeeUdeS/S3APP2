@@ -28,7 +28,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.gestionBoutonsToolbar">
+<Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.gestionBoutons">
    <root>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
          <top>
@@ -64,29 +64,35 @@
                               <ToolBar prefHeight="0.0" prefWidth="600.0">
                                 <items>
                                     <Label text="Option:" />
-                                  <Button fx:id="buttonPlus" mnemonicParsing="false" onAction="#btnPlusClick" text="➕" />
-                                    <Button fx:id="buttonFullscreen" mnemonicParsing="false" onAction="#btnFullscreenClick" text="Fullscreen" />
+                                  <Button fx:id="buttonPlus" mnemonicParsing="false" text="➕" />
+                                    <Button fx:id="buttonFullscreen" mnemonicParsing="false" text="Fullscreen" />
                                     <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="0.0" />
                                     <Label text="Modes:" />
-                                    <Button fx:id="buttonMarker" mnemonicParsing="false" onAction="#btnMarkerClick" text="Marq" />
-                                    <Button fx:id="buttonMove" mnemonicParsing="false" onAction="#btnMoveClick" text="Depl" />
-                                    <Button fx:id="buttonCrayon" mnemonicParsing="false" onAction="#btnCrayonClick" text="Cray" />
-                                    <Button fx:id="buttonInfo" mnemonicParsing="false" onAction="#btnInfoClick" text="Info" />
-                                    <Button fx:id="buttonPict" mnemonicParsing="false" onAction="#btnPictureClick" text="Pict" />
+                                    <Button fx:id="buttonMarker" mnemonicParsing="false" text="Marq" />
+                                    <Button fx:id="buttonMove" mnemonicParsing="false" text="Depl" />
+                                    <Button fx:id="buttonCrayon" mnemonicParsing="false" text="Cray" />
+                                    <Button fx:id="buttonInfo" mnemonicParsing="false" text="Info" />
+                                    <Button fx:id="buttonPict" mnemonicParsing="false" text="Pict" />
                                     <MenuButton fx:id="buttonItemSelected" mnemonicParsing="false" text="Arrows">
                                       <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                        <MenuItem mnemonicParsing="false">
+                                             <graphic>
+                                                <Button fx:id="btnRedArrow" mnemonicParsing="false" onAction="#btnRedArrowClick" text="Red Arrow" />
+                                             </graphic></MenuItem>
+                                        <MenuItem mnemonicParsing="false">
+                                             <graphic>
+                                                <Button fx:id="btnBlackArrow" mnemonicParsing="false" onAction="#btnBlackArrowClick" text="Black Arrow" />
+                                             </graphic></MenuItem>
                                       </items>
                                     </MenuButton>
-                                    <Button fx:id="buttonArrow" mnemonicParsing="false" onAction="#btnArrowClick" text="←" />
+                                    <Button fx:id="buttonArrow" mnemonicParsing="false" text="←" />
                                     <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="0.0" />
                                     <Label text="Alignment:" />
-                                    <Button fx:id="buttonLeftAlignment" mnemonicParsing="false" onAction="#btnLeftAlignmentClick" text="⭰" />
-                                    <Button fx:id="buttonTopAlign" mnemonicParsing="false" onAction="#btnTopAlignmentClick" text="⭱" />
+                                    <Button fx:id="buttonLeftAlignment" mnemonicParsing="false" text="⭰" />
+                                    <Button fx:id="buttonTopAlign" mnemonicParsing="false" text="⭱" />
                                     <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
                                     <Label text="Inversion:" />
-                                    <Button fx:id="buttonInversion" mnemonicParsing="false" onAction="#btnInversionClick" text="BoutonInversion" />
+                                    <Button fx:id="buttonInversion" mnemonicParsing="false" text="BoutonInversion" />
                                 </items>
                               </ToolBar>
                               <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
@@ -111,7 +117,7 @@
                                                          <children>
                                                             <Pane prefHeight="200.0" prefWidth="200.0">
                                                                <children>
-                                                                  <Ellipse fill="PALEGREEN" layoutX="45.0" layoutY="33.0" radiusX="30.0" radiusY="14.0" stroke="GREEN" strokeType="INSIDE" />
+                                                                  <Ellipse fx:id="shape_source" fill="PALEGREEN" layoutX="45.0" layoutY="33.0" radiusX="30.0" radiusY="14.0" stroke="GREEN" strokeType="INSIDE" />
                                                                   <Label layoutX="31.0" layoutY="25.0" text="Source" />
                                                                </children>
                                                             </Pane>
@@ -129,7 +135,7 @@
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                                <children>
                                                                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="38.0" layoutX="38.0" layoutY="14.0" stroke="RED" strokeType="INSIDE" width="15.0" />
-                                                                  <Line endX="7.0" endY="-19.0" layoutX="46.0" layoutY="33.0" startX="-4.0" startY="17.0" stroke="RED" />
+                                                                  <Line endX="7.0" endY="-19.0" layoutX="44.0" layoutY="34.0" startX="-4.0" startY="17.0" stroke="RED" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

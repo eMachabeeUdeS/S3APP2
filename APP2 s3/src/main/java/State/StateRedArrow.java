@@ -1,16 +1,15 @@
 package State;
 
-public class CrayonModeState implements State {
+public class StateRedArrow implements State{
 
 	@Override
 	public String editStatusBar() {
-		return "Draw with the pencil";
-
+		return "Red arrows";
 	}
 
 	@Override
 	public String getEtat() {
-		return "Crayon State";
+		return "State Red Arrows";
 	}
 
 }
