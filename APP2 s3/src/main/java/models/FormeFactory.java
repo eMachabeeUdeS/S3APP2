@@ -1,8 +1,7 @@
 package models;
-import javafx.scene.shape.*;
 
-public interface ShapeFactory {
-	public enum eShape
+public interface FormeFactory {
+	public enum eForme
 	{
 		SOURCE,
 		CERCLE,
@@ -16,5 +15,5 @@ public interface ShapeFactory {
 		FLECHE
 	}
 	
-	public Shape GetShape(eShape shape);
+	public Forme GetForme(eForme forme);
 }

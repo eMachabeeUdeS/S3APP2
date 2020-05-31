@@ -10,22 +10,35 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.canvas.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.control.ListView;
 import models.*;
-import models.ShapeFactory.eShape;
+import models.FormeFactory.eForme;
+import javafx.scene.paint.Color;
 
 public class gestionBoutonsToolbar {
 	State etat;
 	Ellipse ellipse = new Ellipse();
-	ShapeFactory inversion = new ShapeFactoryInversion();
-	ShapeFactory energy = new ShapeFactoryEnergy();
-	ShapeFactory strategy = new ShapeFactoryStrategy();
-	ShapeFactory model = new ShapeFactoryModel();
+	FormeFactory inversion = new FormeFactoryInversion();
+	FormeFactory energy = new FormeFactoryEnergy();
+	FormeFactory strategy = new FormeFactoryStrategy();
+	FormeFactory model = new FormeFactoryModel();
+
 	
-	Shape c = energy.GetShape(eShape.CARRE);
+	Forme aForme;
+	Canvas aCanvas;
+	GraphicsContext aGC;
+	
+	@FXML
+	private Scene topScene;
+	
+	@FXML
+	private Canvas leCanvas;
 	
 	@FXML
 	private Rectangle carre_energy;
@@ -71,6 +84,8 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	private Label state_id;
+	
+	
 	
 	@FXML
 	void btnPlusClick (ActionEvent event) {
@@ -145,13 +160,18 @@ public class gestionBoutonsToolbar {
 		ClipboardContent content = new ClipboardContent();
 		content.putString("carre_energy");
 		dragboard.setContent(content);
+		aForme = energy.GetForme(eForme.CARRE);
 		event.consume();
 	}
 	
 	@FXML
-	void CanvasDragDrop(MouseEvent event) {
-		System.out.println("test");
-		event.consume();
+	void CanvasDragDrop(DragEvent event) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		aGC = leCanvas.getGraphicsContext2D();		
+		aGC.setFill(aForme.getCouleur());
+		aGC.setStroke(aForme.getBordure());
+		aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+		aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
 	}
 	
 	@FXML

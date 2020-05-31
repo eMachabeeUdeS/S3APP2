@@ -28,7 +28,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Scene onDragOver="#SceneDragOver" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.gestionBoutonsToolbar">
+<Scene fx:id="topScene" onDragOver="#SceneDragOver" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.gestionBoutonsToolbar">
    <root>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
          <top>
@@ -391,7 +391,7 @@
                                     </Accordion>
                                     <ScrollPane prefHeight="300.0" prefWidth="214.0">
                                        <content>
-                                          <Canvas height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" width="1150.0" />
+                                          <Canvas fx:id="leCanvas" height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" width="1150.0" />
                                        </content>
                                     </ScrollPane>
                                 </items>
