@@ -30,8 +30,8 @@ public class FormeFactoryModel implements FormeFactory {
 		{
 			f.setCouleur(Color.web("#98FB98"));
 			f.setBordure(Color.web("#008000"));
-			f.setHauteur(15);
-			f.setLargeur(30);
+			f.setHauteur(30);
+			f.setLargeur(60);
 		}
 		else
 		{
