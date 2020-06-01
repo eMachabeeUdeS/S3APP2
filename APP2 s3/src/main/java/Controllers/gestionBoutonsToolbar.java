@@ -29,6 +29,8 @@ public class gestionBoutonsToolbar {
 	FormeFactory strategy = new FormeFactoryStrategy();
 	FormeFactory model = new FormeFactoryModel();
 	String typeForme;
+	double coordonneeXDebutFleche;
+	double coordonneeYDebutFleche;
 	
 	Forme aForme;
 	Canvas aCanvas;
@@ -273,8 +275,8 @@ public class gestionBoutonsToolbar {
 		}
 		else if(typeForme == "cercle")
 		{
-			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
+			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
 		}
 		else if(typeForme == "double_carre")
 		{
@@ -285,10 +287,10 @@ public class gestionBoutonsToolbar {
 		}
 		else if(typeForme == "double_cercle")
 		{
-			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-			aGC.strokeOval(event.getX()+10, event.getY()+10, aForme.getRayon(), aForme.getRayon());
-			aGC.fillOval(event.getX()+10, event.getY()+10, aForme.getRayon(), aForme.getRayon());
+			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.strokeOval(event.getX()+10, event.getY()+10, aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.fillOval(event.getX()+10, event.getY()+10, aForme.getRayon()*2, aForme.getRayon()*2);
 		}
 		else if(typeForme == "rectangle_barre")
 		{
@@ -330,6 +332,19 @@ public class gestionBoutonsToolbar {
 	void CanvasDragOver(DragEvent event) {
 		event.acceptTransferModes(TransferMode.ANY);
 		event.consume();
+	}
+	
+	@FXML
+	void CanvasMousePressed(MouseEvent event) { //Pour dessiner une flèche
+		coordonneeXDebutFleche = event.getX();
+		coordonneeYDebutFleche = event.getY();
+	}
+	
+	@FXML
+	void CanvasMouseReleased(MouseEvent event) {
+		aGC = leCanvas.getGraphicsContext2D();	
+		aGC.setStroke(Color.BLACK);
+		aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
 	}
 	
 }

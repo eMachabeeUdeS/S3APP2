@@ -168,7 +168,8 @@
                                                             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                                          </padding>
                                                       </GridPane>
-                                                   </children></AnchorPane>
+                                                   </children>
+                                                </AnchorPane>
                                           </content>
                                         </TitledPane>
                                         <TitledPane animated="false" text="Inversion-based Models">
@@ -391,7 +392,7 @@
                                     </Accordion>
                                     <ScrollPane prefHeight="300.0" prefWidth="214.0">
                                        <content>
-                                          <Canvas fx:id="leCanvas" height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" width="1150.0" />
+                                          <Canvas fx:id="leCanvas" height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" onMousePressed="#CanvasMousePressed" onMouseReleased="#CanvasMouseReleased" width="1150.0" />
                                        </content>
                                     </ScrollPane>
                                 </items>
