@@ -12,19 +12,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.image.*;
 import javafx.scene.canvas.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.control.ListView;
 import models.*;
 import models.FormeFactory.eForme;
 import javafx.scene.paint.Color;
-import javafx.scene.image.PixelReader;
 
-public class gestionBoutons {
-	State etat = new StateDrawComponents();
+public class gestionBoutonsToolbar {
+	State etat;
 	FormeFactory inversion = new FormeFactoryInversion();
 	FormeFactory energy = new FormeFactoryEnergy();
 	FormeFactory strategy = new FormeFactoryStrategy();
@@ -32,9 +30,9 @@ public class gestionBoutons {
 	String typeForme;
 	double coordonneeXDebutFleche;
 	double coordonneeYDebutFleche;
-	PixelReader pixelReader;
 	
 	Forme aForme;
+	Canvas aCanvas;
 	GraphicsContext aGC;
 	
 	@FXML
@@ -69,12 +67,6 @@ public class gestionBoutons {
 	
 	@FXML
 	private Button buttonPlus;
-	
-	@FXML
-	private Button btnRedArrow;
-	
-	@FXML
-	private Button btnBlackArrow;
 	
 
 	
@@ -168,68 +160,61 @@ public class gestionBoutons {
 	
 	@FXML
 	void CanvasDragDrop(DragEvent event) {
-		if(etat.getEtat() == "Etat draw components") {
-			aGC = leCanvas.getGraphicsContext2D();		
-			aGC.setFill(aForme.getCouleur());
-			aGC.setStroke(aForme.getBordure());
-			if(typeForme == "carre")
-			{
-				aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.strokeRect(event.getX()-1, event.getY()-1, aForme.getHauteur()+2, aForme.getLargeur()+2);
-				aGC.strokeRect(event.getX()-2, event.getY()-2, aForme.getHauteur()+4, aForme.getLargeur()+4);
-				aGC.strokeRect(event.getX()-3, event.getY()-3, aForme.getHauteur()+5, aForme.getLargeur()+5);
-				aGC.strokeRect(event.getX()-4, event.getY()-4, aForme.getHauteur()+6, aForme.getLargeur()+6);
-				aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			}
-			else if(typeForme == "cercle")
-			{
-				aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
-				aGC.fillOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
-			}
-			else if(typeForme == "double_carre")
-			{
-				aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.strokeRect(event.getX()+15, event.getY()+15, aForme.getHauteur(), aForme.getLargeur());
-				aGC.fillRect(event.getX()+15, event.getY()+15, aForme.getHauteur(), aForme.getLargeur());
-			}
-			else if(typeForme == "double_cercle")
-			{
-				aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
-				aGC.fillOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
-				aGC.strokeOval(event.getX()+10, event.getY()+10, aForme.getRayon()*2, aForme.getRayon()*2);
-				aGC.fillOval(event.getX()+10, event.getY()+10, aForme.getRayon()*2, aForme.getRayon()*2);
-			}
-			else if(typeForme == "rectangle_barre")
-			{
-				aGC.strokeRect(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-				aGC.fillRect(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-				aGC.strokeLine(event.getX(), event.getY()+aForme.getHauteur(), event.getX()+aForme.getLargeur(), event.getY());
-			}
-			else if(typeForme == "source")
-			{
-				aGC.strokeOval(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-				aGC.fillOval(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-				aGC.strokeText("Source", event.getX()+aForme.getHauteur()/2, event.getY()+aForme.getHauteur()/2);
-			}
-			else if(typeForme == "carre_sup")
-			{
-				aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.strokeLine(event.getX(), event.getY(), event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur()/2);
-				aGC.strokeLine(event.getX(), event.getY()+aForme.getHauteur(), event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur()/2);
-			}
-			else if(typeForme == "carre_inf")
-			{
-				aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-				aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY(), event.getX(), event.getY()+aForme.getHauteur()/2);
-				aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur(), event.getX(), event.getY()+aForme.getHauteur()/2);
-			}
-			typeForme = null;
-			aForme = null;
+		aGC = leCanvas.getGraphicsContext2D();		
+		aGC.setFill(aForme.getCouleur());
+		aGC.setStroke(aForme.getBordure());
+		if(typeForme == "carre")
+		{
+			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
 		}
-		event.consume();
+		else if(typeForme == "cercle")
+		{
+			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+		}
+		else if(typeForme == "double_carre")
+		{
+			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.strokeRect(event.getX()+15, event.getY()+15, aForme.getHauteur(), aForme.getLargeur());
+			aGC.fillRect(event.getX()+15, event.getY()+15, aForme.getHauteur(), aForme.getLargeur());
+		}
+		else if(typeForme == "double_cercle")
+		{
+			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.strokeOval(event.getX()+10, event.getY()+10, aForme.getRayon()*2, aForme.getRayon()*2);
+			aGC.fillOval(event.getX()+10, event.getY()+10, aForme.getRayon()*2, aForme.getRayon()*2);
+		}
+		else if(typeForme == "rectangle_barre")
+		{
+			aGC.strokeRect(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
+			aGC.fillRect(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
+			aGC.strokeLine(event.getX(), event.getY()+aForme.getHauteur(), event.getX()+aForme.getLargeur(), event.getY());
+		}
+		else if(typeForme == "source")
+		{
+			aGC.strokeOval(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
+			aGC.fillOval(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
+			aGC.strokeText("Source", event.getX()+aForme.getHauteur()/2, event.getY()+aForme.getHauteur()/2);
+		}
+		else if(typeForme == "carre_sup")
+		{
+			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.strokeLine(event.getX(), event.getY(), event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur()/2);
+			aGC.strokeLine(event.getX(), event.getY()+aForme.getHauteur(), event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur()/2);
+		}
+		else if(typeForme == "carre_inf")
+		{
+			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
+			aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY(), event.getX(), event.getY()+aForme.getHauteur()/2);
+			aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur(), event.getX(), event.getY()+aForme.getHauteur()/2);
+		}
+		typeForme = null;
+		aForme = null;
 	}
 	
 	@FXML
@@ -246,46 +231,15 @@ public class gestionBoutons {
 	
 	@FXML
 	void CanvasMousePressed(MouseEvent event) { //Pour dessiner une flèche
-		WritableImage image = leCanvas.snapshot(new SnapshotParameters(), null);
-		Color color = image.getPixelReader().getColor((int) event.getX(), (int) event.getY());
-		if(etat.getEtat() == "Etat Black Arrows" || etat.getEtat() == "Etat Red Arrows") {
-				System.out.println("test");
-				coordonneeXDebutFleche = event.getX();
-				coordonneeYDebutFleche = event.getY();
-		}
-		event.consume();
+		coordonneeXDebutFleche = event.getX();
+		coordonneeYDebutFleche = event.getY();
 	}
 	
 	@FXML
-	void CanvasMouseReleased(MouseEvent event) {	
-		if(etat.getEtat() == "Etat Black Arrows" || etat.getEtat() == "Etat Red Arrows") {
-			aGC = leCanvas.getGraphicsContext2D();
-			if(etat.getEtat() == "Etat Black Arrows") {
-				aGC.setStroke(Color.BLACK);
-			}
-			else if(etat.getEtat() == "Etat Red Arrows") {
-				aGC.setStroke(Color.RED);
-			}
-			aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
-		}
-		event.consume();
+	void CanvasMouseReleased(MouseEvent event) {
+		aGC = leCanvas.getGraphicsContext2D();	
+		aGC.setStroke(Color.BLACK);
+		aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
 	}
 	
-	@FXML
-	void btnRedArrowClick(ActionEvent event) {
-		etat = new StateRedArrow();
-		System.out.println(etat.getEtat());
-	}
-	
-	@FXML
-	void btnBlackArrowClick(ActionEvent event) {
-		etat = new StateBlackArrow();
-		System.out.println(etat.getEtat());
-	}
-	
-	@FXML
-	void btnPlusClick(ActionEvent event) {
-		etat = new StateDrawComponents();
-		System.out.println(etat.getEtat());
-	}
 }

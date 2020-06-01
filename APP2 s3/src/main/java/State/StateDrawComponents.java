@@ -9,7 +9,7 @@ public class StateDrawComponents implements State{
 
 	@Override
 	public String getEtat() {
-		return "Etat draw components";
+		return "State draw components";
 	}
 
 }

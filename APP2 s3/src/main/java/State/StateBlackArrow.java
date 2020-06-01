@@ -9,6 +9,6 @@ public class StateBlackArrow implements State {
 
 	@Override
 	public String getEtat() {
-		return "Etat Black Arrows";
+		return "State Black Arrows";
 	}
 }

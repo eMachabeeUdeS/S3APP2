@@ -28,7 +28,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Scene onDragOver="#SceneDragOver" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.gestionBoutons">
+<Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.gestionBoutons">
    <root>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0">
          <top>
@@ -64,7 +64,7 @@
                               <ToolBar prefHeight="0.0" prefWidth="600.0">
                                 <items>
                                     <Label text="Option:" />
-                                  <Button fx:id="buttonPlus" mnemonicParsing="false" onAction="#btnPlusClick" text="➕" />
+                                  <Button fx:id="buttonPlus" mnemonicParsing="false" text="➕" />
                                     <Button fx:id="buttonFullscreen" mnemonicParsing="false" text="Fullscreen" />
                                     <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="0.0" />
                                     <Label text="Modes:" />
@@ -117,48 +117,48 @@
                                                          <children>
                                                             <Pane prefHeight="200.0" prefWidth="200.0">
                                                                <children>
-                                                                  <Ellipse fx:id="shape_source" fill="PALEGREEN" layoutX="45.0" layoutY="33.0" onDragDetected="#sourceDragDetected" radiusX="30.0" radiusY="14.0" stroke="GREEN" strokeType="INSIDE" />
+                                                                  <Ellipse fx:id="shape_source" fill="PALEGREEN" layoutX="45.0" layoutY="33.0" radiusX="30.0" radiusY="14.0" stroke="GREEN" strokeType="INSIDE" />
                                                                   <Label layoutX="31.0" layoutY="25.0" text="Source" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                                                <children>
-                                                                  <Rectangle fx:id="carre_energy" arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="38.0" layoutX="28.0" layoutY="14.0" onDragDetected="#CarreEnergyDragDetected" stroke="RED" strokeType="INSIDE" width="35.0" />
+                                                                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="38.0" layoutX="28.0" layoutY="14.0" stroke="RED" strokeType="INSIDE" width="35.0" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                                                <children>
                                                                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="28.0" layoutY="14.0" stroke="RED" strokeType="INSIDE" width="34.0" />
-                                                                  <Rectangle fx:id="double_carre_energy" arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="46.0" layoutY="24.0" onDragDetected="#deuxCarresEnergyDragDetected" stroke="RED" strokeType="INSIDE" width="33.0" />
+                                                                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="46.0" layoutY="24.0" stroke="RED" strokeType="INSIDE" width="33.0" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                                                <children>
-                                                                  <Rectangle fx:id="rectangle_barre_energy" arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="38.0" layoutX="38.0" layoutY="14.0" onDragDetected="#RectangleBarreEnergyDragDetected" stroke="RED" strokeType="INSIDE" width="15.0" />
+                                                                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="38.0" layoutX="38.0" layoutY="14.0" stroke="RED" strokeType="INSIDE" width="15.0" />
                                                                   <Line endX="7.0" endY="-19.0" layoutX="44.0" layoutY="34.0" startX="-4.0" startY="17.0" stroke="RED" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <children>
-                                                                  <Circle fx:id="cercle_energy" fill="GOLD" layoutX="46.0" layoutY="33.0" onDragDetected="#CercleEnergyDragDetected" radius="17.0" stroke="RED" strokeType="INSIDE" />
+                                                                  <Circle fill="GOLD" layoutX="46.0" layoutY="33.0" radius="17.0" stroke="RED" strokeType="INSIDE" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="122.0" prefWidth="118.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                                <children>
                                                                   <Circle fill="GOLD" layoutX="43.0" layoutY="31.0" radius="17.0" stroke="RED" strokeType="INSIDE" />
-                                                                  <Circle fx:id="double_cercle_energy" fill="GOLD" layoutX="60.0" layoutY="42.0" onDragDetected="#deuxCerclesEnergyDragDetected" radius="17.0" stroke="RED" strokeType="INSIDE" />
+                                                                  <Circle fill="GOLD" layoutX="43.0" layoutY="48.0" radius="17.0" stroke="RED" strokeType="INSIDE" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                                                <children>
-                                                                  <Rectangle fx:id="carre_sup_energy" arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="29.0" layoutY="16.0" onDragDetected="#carreSupEnergyDragDetected" stroke="RED" strokeType="INSIDE" width="33.0" />
+                                                                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="29.0" layoutY="16.0" stroke="RED" strokeType="INSIDE" width="33.0" />
                                                                   <Line endX="-57.29290771484375" endY="-14.29290771484375" layoutX="119.0" layoutY="52.0" startX="-90.0" startY="-2.0" stroke="RED" />
                                                                   <Line endX="-66.5858154296875" endY="-25.0" layoutX="129.0" layoutY="62.0" startX="-100.0" startY="-46.0" stroke="RED" />
                                                                </children>
                                                             </Pane>
                                                             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                                <children>
-                                                                  <Rectangle fx:id="carre_inf_energy" arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="29.0" layoutY="16.0" onDragDetected="#carreInfEnergyDragDetected" stroke="RED" strokeType="INSIDE" width="33.0" />
+                                                                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GOLD" height="34.0" layoutX="29.0" layoutY="16.0" stroke="RED" strokeType="INSIDE" width="33.0" />
                                                                   <Line endX="16.0" endY="-20.0" layoutX="46.0" layoutY="38.0" startX="-16.0" startY="-6.0" stroke="RED" />
                                                                   <Line endX="14.0" endY="10.0" layoutX="46.0" layoutY="38.0" startX="-15.0" startY="-6.0" stroke="RED" />
                                                                </children>
@@ -391,7 +391,7 @@
                                     </Accordion>
                                     <ScrollPane prefHeight="300.0" prefWidth="214.0">
                                        <content>
-                                          <Canvas fx:id="leCanvas" height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" onMousePressed="#CanvasMousePressed" onMouseReleased="#CanvasMouseReleased" width="1150.0" />
+                                          <Canvas height="660.0" width="1150.0" />
                                        </content>
                                     </ScrollPane>
                                 </items>
