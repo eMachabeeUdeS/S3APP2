@@ -9,7 +9,7 @@ public class StateRedArrow implements State{
 
 	@Override
 	public String getEtat() {
-		return "State Red Arrows";
+		return "Etat Red Arrows";
 	}
 
 }
