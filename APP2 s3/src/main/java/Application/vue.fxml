@@ -389,7 +389,7 @@
                                           </TitledPane>
                                       </panes>
                                     </Accordion>
-                                    <ScrollPane prefHeight="300.0" prefWidth="214.0">
+                                    <ScrollPane fx:id="scroll" prefHeight="300.0" prefWidth="214.0">
                                        <content>
                                           <Canvas fx:id="leCanvas" height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" width="1150.0" />
                                        </content>
