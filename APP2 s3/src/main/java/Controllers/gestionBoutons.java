@@ -17,6 +17,15 @@ public class gestionBoutons {
 	private Button btnBlackArrow;
 	
 	@FXML
+	private Button buttonPlus;
+	
+	@FXML
+	void btnPlusClick(ActionEvent event) {
+		etat = new StateDrawComponents();
+		System.out.println(etat.getEtat());
+	}
+	
+	@FXML
 	void btnRedArrowClick(ActionEvent event) {
 		etat = new StateRedArrow();
 		System.out.println(etat.getEtat());
@@ -27,6 +36,9 @@ public class gestionBoutons {
 		etat = new StateBlackArrow();
 		System.out.println(etat.getEtat());
 	}
+	
+	@FXML
+	void 
 	
 	
 }
