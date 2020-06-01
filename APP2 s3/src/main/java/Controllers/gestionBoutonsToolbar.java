@@ -188,16 +188,18 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void undoClick (ActionEvent event) {
-		InfosAjoutRetrait temp = controleur.commands[1].execute(undoStack);
-		
+		InfosAjoutRetrait inf = new InfosAjoutRetrait(undoStack.getLast().getTypeForme(), undoStack.getLast().getForme(), undoStack.getLast().getX(), undoStack.getLast().getY());
+		Commande retirer = new CommandeRetirer();
+		retirer.execute(inf, leCanvas, aGC);
 		redoStack.addLast(undoStack.getLast());
 		undoStack.pop();
-		controleur.commands[0] = new CommandeRedo();
 	}
 	
 	@FXML
 	void redoClick(ActionEvent event) {
-		
+		InfosAjoutRetrait inf = new InfosAjoutRetrait(redoStack.getLast().getTypeForme(), redoStack.getLast().getForme(), redoStack.getLast().getX(), redoStack.getLast().getY());
+		Commande ajouter = new CommandeAjouter();
+		ajouter.execute(inf, leCanvas, aGC);
 		undoStack.addLast(redoStack.getLast());
 		redoStack.pop();
 	}

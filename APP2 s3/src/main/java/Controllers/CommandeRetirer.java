@@ -1,18 +1,19 @@
 package Controllers;
+
 import java.util.Deque;
 
 import Controllers.Ressources_Controllers.InfosAjoutRetrait;
-import javafx.scene.canvas.*;
-import models.Forme;
-import java.util.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-public class CommandeAjouter implements Commande {
+public class CommandeRetirer implements Commande{
 
 	@Override
 	public void execute(InfosAjoutRetrait info, Canvas leCanvas, GraphicsContext aGC) {
 		aGC = leCanvas.getGraphicsContext2D();		
-		aGC.setFill(info.getForme().getCouleur());
-		aGC.setStroke(info.getForme().getBordure());
+		aGC.setFill(Color.LIGHTGREY);
+		aGC.setStroke(Color.LIGHTGREY);
 		if(info.getTypeForme() == "carre")
 		{
 			aGC.strokeRect(info.getX(), info.getY(), info.getForme().getHauteur(), info.getForme().getLargeur());
@@ -62,7 +63,7 @@ public class CommandeAjouter implements Commande {
 			aGC.fillRect(info.getX(), info.getY(), info.getForme().getHauteur(), info.getForme().getLargeur());
 			aGC.strokeLine(info.getX()+info.getForme().getHauteur(), info.getY(), info.getX(), info.getY()+info.getForme().getHauteur()/2);
 			aGC.strokeLine(info.getX()+info.getForme().getHauteur(), info.getY()+info.getForme().getHauteur(), info.getX(), info.getY()+info.getForme().getHauteur()/2);
-		}
-		System.out.println("Test");
-	}	
+		}	
+		
+	}
 }
