@@ -16,22 +16,29 @@ import javafx.scene.canvas.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.control.ListView;
 import models.*;
 import models.FormeFactory.eForme;
+import Controllers.Ressources_Controllers.*;
 import javafx.scene.paint.Color;
+import java.util.AbstractCollection;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class gestionBoutonsToolbar {
 	State etat;
-	Ellipse ellipse = new Ellipse();
 	FormeFactory inversion = new FormeFactoryInversion();
 	FormeFactory energy = new FormeFactoryEnergy();
 	FormeFactory strategy = new FormeFactoryStrategy();
 	FormeFactory model = new FormeFactoryModel();
 	String typeForme;
+	Commande[] commandes = new Commande[4];
+	Controller controleur;
+	InfosAjoutRetrait infosredo;
+	InfosAjoutRetrait infosundo;
+	Deque<InfosAjoutRetrait> redoStack = new ArrayDeque<InfosAjoutRetrait>();
+	Deque<InfosAjoutRetrait> undoStack = new ArrayDeque<InfosAjoutRetrait>();
 	
 	Forme aForme;
-	Canvas aCanvas;
 	GraphicsContext aGC;
 	
 	@FXML
@@ -107,6 +114,12 @@ public class gestionBoutonsToolbar {
 	private Label state_id;
 	
 	@FXML
+	private MenuItem redo;
+	
+	@FXML
+	private MenuItem undo;
+	
+	@FXML
 	void btnPlusClick (ActionEvent event) {
 	etat = new AddModeState();
 	state_id.setText(etat.editStatusBar());
@@ -171,6 +184,22 @@ public class gestionBoutonsToolbar {
 	void btnInversionClick (ActionEvent event) {
 	etat = new InversionModeState();
 	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void undoClick (ActionEvent event) {
+		InfosAjoutRetrait temp = controleur.commands[1].execute(undoStack);
+		
+		redoStack.addLast(undoStack.getLast());
+		undoStack.pop();
+		controleur.commands[0] = new CommandeRedo();
+	}
+	
+	@FXML
+	void redoClick(ActionEvent event) {
+		
+		undoStack.addLast(redoStack.getLast());
+		redoStack.pop();
 	}
 	
 	@FXML
@@ -263,59 +292,10 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void CanvasDragDrop(DragEvent event) {
-		aGC = leCanvas.getGraphicsContext2D();		
-		aGC.setFill(aForme.getCouleur());
-		aGC.setStroke(aForme.getBordure());
-		if(typeForme == "carre")
-		{
-			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-		}
-		else if(typeForme == "cercle")
-		{
-			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-		}
-		else if(typeForme == "double_carre")
-		{
-			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.strokeRect(event.getX()+15, event.getY()+15, aForme.getHauteur(), aForme.getLargeur());
-			aGC.fillRect(event.getX()+15, event.getY()+15, aForme.getHauteur(), aForme.getLargeur());
-		}
-		else if(typeForme == "double_cercle")
-		{
-			aGC.strokeOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-			aGC.fillOval(event.getX(), event.getY(), aForme.getRayon(), aForme.getRayon());
-			aGC.strokeOval(event.getX()+10, event.getY()+10, aForme.getRayon(), aForme.getRayon());
-			aGC.fillOval(event.getX()+10, event.getY()+10, aForme.getRayon(), aForme.getRayon());
-		}
-		else if(typeForme == "rectangle_barre")
-		{
-			aGC.strokeRect(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-			aGC.fillRect(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-			aGC.strokeLine(event.getX(), event.getY()+aForme.getHauteur(), event.getX()+aForme.getLargeur(), event.getY());
-		}
-		else if(typeForme == "source")
-		{
-			aGC.strokeOval(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-			aGC.fillOval(event.getX(), event.getY(), aForme.getLargeur(), aForme.getHauteur());
-			aGC.strokeText("Source", event.getX()+aForme.getHauteur()/2, event.getY()+aForme.getHauteur()/2);
-		}
-		else if(typeForme == "carre_sup")
-		{
-			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.strokeLine(event.getX(), event.getY(), event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur()/2);
-			aGC.strokeLine(event.getX(), event.getY()+aForme.getHauteur(), event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur()/2);
-		}
-		else if(typeForme == "carre_inf")
-		{
-			aGC.strokeRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.fillRect(event.getX(), event.getY(), aForme.getHauteur(), aForme.getLargeur());
-			aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY(), event.getX(), event.getY()+aForme.getHauteur()/2);
-			aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur(), event.getX(), event.getY()+aForme.getHauteur()/2);
-		}
+		InfosAjoutRetrait ajout = new InfosAjoutRetrait(typeForme, aForme, event.getX(), event.getY());
+		this.undoStack.addLast(ajout);
+		Commande ajouter = new CommandeAjouter();
+		ajouter.execute(ajout, leCanvas, aGC);
 		typeForme = null;
 		aForme = null;
 	}
