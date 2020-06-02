@@ -188,19 +188,19 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void undoClick (ActionEvent event) {
-		InfosAjoutRetrait inf = new InfosAjoutRetrait(undoStack.getLast().getTypeForme(), undoStack.getLast().getForme(), undoStack.getLast().getX(), undoStack.getLast().getY());
+		InfosAjoutRetrait inf = new InfosAjoutRetrait(undoStack.getFirst().getTypeForme(), undoStack.getFirst().getForme(), undoStack.getFirst().getX(), undoStack.getFirst().getY());
 		Commande retirer = new CommandeRetirer();
 		retirer.execute(inf, leCanvas, aGC);
-		redoStack.addLast(undoStack.getLast());
+		redoStack.add(undoStack.getFirst());
 		undoStack.pop();
 	}
 	
 	@FXML
 	void redoClick(ActionEvent event) {
-		InfosAjoutRetrait inf = new InfosAjoutRetrait(redoStack.getLast().getTypeForme(), redoStack.getLast().getForme(), redoStack.getLast().getX(), redoStack.getLast().getY());
+		InfosAjoutRetrait inf = new InfosAjoutRetrait(redoStack.getFirst().getTypeForme(), redoStack.getFirst().getForme(), redoStack.getFirst().getX(), redoStack.getFirst().getY());
 		Commande ajouter = new CommandeAjouter();
 		ajouter.execute(inf, leCanvas, aGC);
-		undoStack.addLast(redoStack.getLast());
+		undoStack.add(redoStack.getFirst());
 		redoStack.pop();
 	}
 	
@@ -295,7 +295,7 @@ public class gestionBoutonsToolbar {
 	@FXML
 	void CanvasDragDrop(DragEvent event) {
 		InfosAjoutRetrait ajout = new InfosAjoutRetrait(typeForme, aForme, event.getX(), event.getY());
-		this.undoStack.addLast(ajout);
+		this.undoStack.add(ajout);
 		Commande ajouter = new CommandeAjouter();
 		ajouter.execute(ajout, leCanvas, aGC);
 		typeForme = null;
