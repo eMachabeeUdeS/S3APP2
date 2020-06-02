@@ -31,6 +31,7 @@ public class gestionBoutonsToolbar {
 	String typeForme;
 	double coordonneeXDebutFleche;
 	double coordonneeYDebutFleche;
+	double angle = 0.7853982; //45 degrés en radians
 	
 	Forme aForme;
 	Canvas aCanvas;
@@ -387,6 +388,23 @@ public class gestionBoutonsToolbar {
 		aGC = leCanvas.getGraphicsContext2D();	
 		aGC.setStroke(Color.BLACK);
 		aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
+		double angleLigne = java.lang.Math.atan((event.getY()-coordonneeYDebutFleche)/(event.getX()-coordonneeXDebutFleche));
+		
+		if (event.getX()>=coordonneeXDebutFleche)
+		{
+			double angleFleche1 = angleLigne + angle;
+			double angleFleche2 = angleLigne - angle;
+			aGC.strokeLine(event.getX(), event.getY(), event.getX()-(20*Math.cos(angleFleche1)), event.getY()-(20*Math.sin(angleFleche1)));
+			aGC.strokeLine(event.getX(), event.getY(), event.getX()-(20*Math.cos(angleFleche2)), event.getY()-(20*Math.sin(angleFleche2)));
+		}
+		else
+		{
+			double angleFleche1 = angleLigne + angle;
+			double angleFleche2 = angleLigne - angle;
+			aGC.strokeLine(event.getX(), event.getY(), event.getX()+(20*Math.cos(angleFleche1)), event.getY()+(20*Math.sin(angleFleche1)));
+			aGC.strokeLine(event.getX(), event.getY(), event.getX()+(20*Math.cos(angleFleche2)), event.getY()+(20*Math.sin(angleFleche2)));
+		}
+		
 	}
 	
 }

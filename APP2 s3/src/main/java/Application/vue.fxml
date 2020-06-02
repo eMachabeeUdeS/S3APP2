@@ -36,7 +36,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeClick" text="Close"/>
+                    <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeClick" text="Close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
@@ -392,7 +392,7 @@
                                     </Accordion>
                                     <ScrollPane prefHeight="300.0" prefWidth="214.0">
                                        <content>
-                                          <Canvas fx:id="leCanvas" height="660.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" onMousePressed="#CanvasMousePressed" onMouseReleased="#CanvasMouseReleased" width="1150.0" />
+                                          <Canvas fx:id="leCanvas" height="4000.0" onDragDropped="#CanvasDragDrop" onDragOver="#CanvasDragOver" onMousePressed="#CanvasMousePressed" onMouseReleased="#CanvasMouseReleased" width="4000.0" />
                                        </content>
                                     </ScrollPane>
                                 </items>
