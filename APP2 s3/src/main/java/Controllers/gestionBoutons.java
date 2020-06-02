@@ -34,6 +34,9 @@ public class gestionBoutons {
 	double coordonneeYDebutFleche;
 	PixelReader pixelReader;
 	
+	double angle = 0.7853982; //45 degrés en radians
+	int longueur = 20;
+	
 	Forme aForme;
 	GraphicsContext aGC;
 	
@@ -267,6 +270,34 @@ public class gestionBoutons {
 				aGC.setStroke(Color.RED);
 			}
 			aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
+			double angleLigne = java.lang.Math.atan((event.getY()-coordonneeYDebutFleche)/(event.getX()-coordonneeXDebutFleche));
+			double angleFleche1 = angleLigne + angle;
+			double angleFleche2 = angleLigne - angle;
+			
+			if (event.getX()>=coordonneeXDebutFleche)
+			{		
+				aGC.strokeLine(event.getX(), event.getY(), event.getX()-(longueur*Math.cos(angleFleche1)), event.getY()-(longueur*Math.sin(angleFleche1)));
+				aGC.strokeLine(event.getX(), event.getY(), event.getX()-(longueur*Math.cos(angleFleche2)), event.getY()-(longueur*Math.sin(angleFleche2)));
+				if (etat.getEtat() == "Etat Red Arrows")
+				{
+					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche+(longueur*Math.cos(angleFleche1)), coordonneeYDebutFleche+(longueur*Math.sin(angleFleche1)));
+					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche+(longueur*Math.cos(angleFleche2)), coordonneeYDebutFleche+(longueur*Math.sin(angleFleche2)));
+					aGC.strokeLine(coordonneeXDebutFleche+(longueur*Math.cos(angleFleche1)), coordonneeYDebutFleche+(longueur*Math.sin(angleFleche1)), coordonneeXDebutFleche+(longueur*Math.cos(angleFleche2)), coordonneeYDebutFleche+(longueur*Math.sin(angleFleche2)));
+					aGC.strokeLine(event.getX()-(longueur*Math.cos(angleFleche1)), event.getY()-(longueur*Math.sin(angleFleche1)), event.getX()-(longueur*Math.cos(angleFleche2)), event.getY()-(longueur*Math.sin(angleFleche2)));
+				}
+			}
+			else
+			{
+				aGC.strokeLine(event.getX(), event.getY(), event.getX()+(longueur*Math.cos(angleFleche1)), event.getY()+(longueur*Math.sin(angleFleche1)));
+				aGC.strokeLine(event.getX(), event.getY(), event.getX()+(longueur*Math.cos(angleFleche2)), event.getY()+(longueur*Math.sin(angleFleche2)));
+				if (etat.getEtat() == "Etat Red Arrows")
+				{
+					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche-(longueur*Math.cos(angleFleche1)), coordonneeYDebutFleche-(longueur*Math.sin(angleFleche1)));
+					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche-(longueur*Math.cos(angleFleche2)), coordonneeYDebutFleche-(longueur*Math.sin(angleFleche2)));
+					aGC.strokeLine(coordonneeXDebutFleche-(longueur*Math.cos(angleFleche1)), coordonneeYDebutFleche-(longueur*Math.sin(angleFleche1)), coordonneeXDebutFleche-(longueur*Math.cos(angleFleche2)), coordonneeYDebutFleche-(longueur*Math.sin(angleFleche2)));
+					aGC.strokeLine(event.getX()+(longueur*Math.cos(angleFleche1)), event.getY()+(longueur*Math.sin(angleFleche1)), event.getX()+(longueur*Math.cos(angleFleche2)), event.getY()+(longueur*Math.sin(angleFleche2)));
+				}
+			}
 		}
 		event.consume();
 	}
