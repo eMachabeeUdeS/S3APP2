@@ -64,15 +64,15 @@
                               <ToolBar prefHeight="0.0" prefWidth="600.0">
                                 <items>
                                     <Label text="Option:" />
-                                  <Button fx:id="buttonPlus" mnemonicParsing="false" text="➕" />
-                                    <Button fx:id="buttonFullscreen" mnemonicParsing="false" text="Fullscreen" />
+                                  <Button fx:id="buttonPlus" mnemonicParsing="false" onAction="#btnPlusClick" text="➕" />
+                                    <Button fx:id="buttonFullscreen" mnemonicParsing="false" onAction="#btnFullscreenClick" text="Fullscreen" />
                                     <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="0.0" />
                                     <Label text="Modes:" />
-                                    <Button fx:id="buttonMarker" mnemonicParsing="false" text="Marq" />
-                                    <Button fx:id="buttonMove" mnemonicParsing="false" text="Depl" />
-                                    <Button fx:id="buttonCrayon" mnemonicParsing="false" text="Cray" />
-                                    <Button fx:id="buttonInfo" mnemonicParsing="false" text="Info" />
-                                    <Button fx:id="buttonPict" mnemonicParsing="false" text="Pict" />
+                                    <Button fx:id="buttonMarker" mnemonicParsing="false" onAction="#btnMarkerClick" text="Marq" />
+                                    <Button fx:id="buttonMove" mnemonicParsing="false" onAction="#btnMoveClick" text="Depl" />
+                                    <Button fx:id="buttonCrayon" mnemonicParsing="false" onAction="#btnCrayonClick" text="Cray" />
+                                    <Button fx:id="buttonInfo" mnemonicParsing="false" onAction="#btnInfoClick" text="Info" />
+                                    <Button fx:id="buttonPict" mnemonicParsing="false" onAction="#btnPictureClick" text="Pict" />
                                     <MenuButton fx:id="buttonItemSelected" mnemonicParsing="false" text="Arrows">
                                       <items>
                                         <MenuItem mnemonicParsing="false">
@@ -85,14 +85,14 @@
                                              </graphic></MenuItem>
                                       </items>
                                     </MenuButton>
-                                    <Button fx:id="buttonArrow" mnemonicParsing="false" text="←" />
+                                    <Button fx:id="buttonArrow" mnemonicParsing="false" onAction="#btnArrowClick" text="←" />
                                     <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="0.0" />
                                     <Label text="Alignment:" />
-                                    <Button fx:id="buttonLeftAlignment" mnemonicParsing="false" text="⭰" />
-                                    <Button fx:id="buttonTopAlign" mnemonicParsing="false" text="⭱" />
+                                    <Button fx:id="buttonLeftAlignment" mnemonicParsing="false" onAction="#btnLeftAlignmentClick" text="⭰" />
+                                    <Button fx:id="buttonTopAlign" mnemonicParsing="false" onAction="#btnTopAlignmentClick" text="⭱" />
                                     <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
                                     <Label text="Inversion:" />
-                                    <Button fx:id="buttonInversion" mnemonicParsing="false" text="BoutonInversion" />
+                                    <Button fx:id="buttonInversion" mnemonicParsing="false" onAction="#btnInversionClick" text="BoutonInversion" />
                                 </items>
                               </ToolBar>
                               <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
