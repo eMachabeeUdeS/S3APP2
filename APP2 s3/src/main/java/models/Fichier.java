@@ -117,6 +117,10 @@ public class Fichier{
 				GC.strokeLine(copyStack.getFirst().getAnchorX1()+40, copyStack.getFirst().getAnchorY1(), copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1()+20);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1()+40, copyStack.getFirst().getAnchorY1()+40, copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1()+20);
 			}
+			else if(copyStack.getFirst().getTypeForme().equals("fleche"))
+			{
+				GC.strokeLine(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), copyStack.getFirst().getAnchorX2(), copyStack.getFirst().getAnchorY2());
+			}
 			copyStack.pop();
 		}
 		
