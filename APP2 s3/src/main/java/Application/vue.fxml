@@ -106,7 +106,7 @@
                                     </Accordion>
                                     <ScrollPane prefHeight="300.0" prefWidth="214.0">
                                        <content>
-                                          <Canvas height="660.0" width="1150.0" />
+                                          <Canvas height="4000.0" width="4000.0" />
                                        </content>
                                     </ScrollPane>
                                 </items>
