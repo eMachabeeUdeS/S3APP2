@@ -1,16 +1,15 @@
 package State;
 
-public class CrayonModeState implements State {
+public class TXTState implements State {
 
 	@Override
 	public String editStatusBar() {
-		return "Draw with the pencil";
-
+		return "Write or load a TXT File.";
 	}
 
 	@Override
 	public String getEtat() {
-		return "Crayon State";
+		return "TXT State";
 	}
 
 }

@@ -11,10 +11,10 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -65,14 +65,6 @@
                                 <items>
                                     <Label text="Option:" />
                                   <Button fx:id="buttonPlus" mnemonicParsing="false" text="➕" />
-                                    <Button fx:id="buttonFullscreen" mnemonicParsing="false" text="Fullscreen" />
-                                    <Separator orientation="VERTICAL" prefHeight="22.0" prefWidth="0.0" />
-                                    <Label text="Modes:" />
-                                    <Button fx:id="buttonMarker" mnemonicParsing="false" text="Marq" />
-                                    <Button fx:id="buttonMove" mnemonicParsing="false" text="Depl" />
-                                    <Button fx:id="buttonCrayon" mnemonicParsing="false" text="Cray" />
-                                    <Button fx:id="buttonInfo" mnemonicParsing="false" text="Info" />
-                                    <Button fx:id="buttonPict" mnemonicParsing="false" text="Pict" />
                                     <MenuButton fx:id="buttonItemSelected" mnemonicParsing="false" text="Arrows">
                                       <items>
                                         <MenuItem mnemonicParsing="false">
@@ -85,14 +77,11 @@
                                              </graphic></MenuItem>
                                       </items>
                                     </MenuButton>
-                                    <Button fx:id="buttonArrow" mnemonicParsing="false" text="←" />
-                                    <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="0.0" />
-                                    <Label text="Alignment:" />
-                                    <Button fx:id="buttonLeftAlignment" mnemonicParsing="false" text="⭰" />
-                                    <Button fx:id="buttonTopAlign" mnemonicParsing="false" text="⭱" />
-                                    <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
-                                    <Label text="Inversion:" />
-                                    <Button fx:id="buttonInversion" mnemonicParsing="false" text="BoutonInversion" />
+                                    <Button fx:id="buttonSave" mnemonicParsing="false" onAction="#btnSaveClick" text="Save" />
+                                    <Button fx:id="buttonLoad" mnemonicParsing="false" onAction="#btnLoadClick" text="Load" />
+                                    <TextField fx:id="file_dir" text="File Directory" />
+                                    <Button fx:id="buttonFxml" mnemonicParsing="false" onAction="#btnFxmlClick" text="FXML file" />
+                                    <Button fx:id="buttonTxt" mnemonicParsing="false" onAction="#btnTxtClick" text="Text File" />
                                 </items>
                               </ToolBar>
                               <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
