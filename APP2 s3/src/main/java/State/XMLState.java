@@ -1,16 +1,15 @@
 package State;
 
-public class MarkerState implements State {
-	
+public class XMLState implements State{
+
 	@Override
 	public String editStatusBar() {
-		
-		return "Draw using the marker";
+		return "Write or load an FXML file";
 	}
 
 	@Override
 	public String getEtat() {
-		return "Marker State";
+		return "XML file State";
 	}
 
 }

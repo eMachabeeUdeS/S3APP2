@@ -1,36 +1,54 @@
 package Controllers;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+import State.AddModeState;
+import State.State;
+import State.TXTState;
+import State.XMLState;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.event.*;
-import Controllers.*;
-import State.*;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.control.ListView;
-import models.*;
-import models.FormeFactory.eForme;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
+import models.Fichier;
+import models.FichierTexte;
+import models.FichierXML;
+import models.Forme;
+import models.FormeFactory;
+import models.FormeFactory.eForme;
+import models.FormeFactoryEnergy;
+import models.FormeFactoryInversion;
+import models.FormeFactoryModel;
+import models.FormeFactoryStrategy;
+import models.Modele;
 
 public class gestionBoutonsToolbar {
 	State etat;
-	Ellipse ellipse = new Ellipse();
 	FormeFactory inversion = new FormeFactoryInversion();
 	FormeFactory energy = new FormeFactoryEnergy();
 	FormeFactory strategy = new FormeFactoryStrategy();
 	FormeFactory model = new FormeFactoryModel();
 	String typeForme;
+	String couleursForme;
 	double coordonneeXDebutFleche;
 	double coordonneeYDebutFleche;
+	Deque<Modele> stackModele = new ArrayDeque<Modele>();
+	Fichier fichier;
 	
 	Forme aForme;
 	Canvas aCanvas;
@@ -70,43 +88,19 @@ public class gestionBoutonsToolbar {
 	private Button buttonPlus;
 	
 	@FXML
-	private Button buttonArrow;
-	
-	@FXML
-	private Button buttonCrayon;
-	
-	@FXML
-	private Button buttonDelete;
-	
-	@FXML
-	private Button buttonFullscreen;
-	
-	@FXML
-	private Button buttonInfo;
-	
-	@FXML
-	private Button buttonInversion;
-	
-	@FXML
 	private MenuButton buttonItemSelected;
 	
 	@FXML
-	private Button buttonLeftAlignment;
-	
-	@FXML
-	private Button buttonMarker;
-	
-	@FXML
-	private Button buttonMove;
-	
-	@FXML
-	private Button buttonPict;
-	
-	@FXML
-	private Button buttonTopAlign;
-	
-	@FXML
 	private Label state_id;
+	
+	@FXML
+	private Button buttonSave;
+	
+	@FXML
+	private Button buttonLoad;
+	
+	@FXML
+	private TextField file_dir;
 	
 	@FXML
 	void btnPlusClick (ActionEvent event) {
@@ -115,64 +109,55 @@ public class gestionBoutonsToolbar {
 	}
 	
 	@FXML
-	void btnFullscreenClick (ActionEvent event) {
-	etat = new FullscreenState();
-	state_id.setText(etat.editStatusBar());
+	void btnSaveClick(ActionEvent event) {
+		if(etat.getEtat() == "XML file State") {
+			fichier = new FichierXML();
+		}
+		else if(etat.getEtat() == "TXT file State") {
+			fichier = new FichierTexte();
+		}
+		else {
+			return;
+		}
+		if(file_dir.getText() != null)
+		{
+			fichier.nouveauFichier(file_dir.getText());
+		}
+		else
+			return;
+		fichier.ecrireFichier(stackModele, file_dir.getText());
 	}
 	
 	@FXML
-	void btnMarkerClick (ActionEvent event) {
-	etat = new MarkerState();
-	state_id.setText(etat.editStatusBar());
+	void btnLoadClick(ActionEvent event) {
+		if(etat.getEtat() == "XML file State") {
+			fichier = new FichierXML();
+		}
+		else if(etat.getEtat() == "TXT file State") {
+			fichier = new FichierTexte();
+		}
+		else {
+			return;
+		}
+		if(file_dir.getText() != null)
+		{
+			fichier.nouveauFichier(file_dir.getText());
+		}
+		else {
+			return;
+		}
+		stackModele = fichier.lireFichier(stackModele, file_dir.getText(), aGC, leCanvas.getWidth(), leCanvas.getHeight());
+		
 	}
 	
 	@FXML
-	void btnMoveClick (ActionEvent event) {
-	etat = new MoveModeState();
-	state_id.setText(etat.editStatusBar());
+	void btnFxmlClick(ActionEvent event) {
+		etat = new XMLState();
 	}
 	
 	@FXML
-	void btnCrayonClick (ActionEvent event) {
-	etat = new CrayonModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnInfoClick (ActionEvent event) {
-	etat = new InfoModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnPictureClick (ActionEvent event) {
-	etat = new PictModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnArrowClick (ActionEvent event) {
-	etat = new ArrowState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnLeftAlignmentClick (ActionEvent event) {
-	etat = new LeftAlignmentState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	
-	@FXML
-	void btnTopAlignmentClick (ActionEvent event) {
-	etat = new TopAlignmentState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnInversionClick (ActionEvent event) {
-	etat = new InversionModeState();
-	state_id.setText(etat.editStatusBar());
+	void btnTxtClick(ActionEvent event) {
+		etat = new TXTState();
 	}
 	
 	@FXML
@@ -183,6 +168,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.CARRE);
 		typeForme = "carre";
+		couleursForme = "energy";
 		event.consume();
 	}
 	
@@ -194,6 +180,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.CERCLE);
 		typeForme = "cercle";
+		couleursForme = "energy";
 		event.consume();
 	}
 	
@@ -205,6 +192,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.RECTANGLE);
 		typeForme = "rectangle_barre";
+		couleursForme = "energy";
 		event.consume();
 	}
 	
@@ -216,6 +204,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.CERCLE);
 		typeForme = "double_cercle";
+		couleursForme = "energy";
 		event.consume();
 	}
 	
@@ -227,6 +216,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.CARRE);
 		typeForme = "double_carre";
+		couleursForme = "energy";
 		event.consume();
 	}
 	
@@ -238,6 +228,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.CARRE);
 		typeForme = "carre_inf";
+		couleursForme = "energy";
 		event.consume();	
 	}
 	
@@ -249,6 +240,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.CARRE);
 		typeForme = "carre_sup";
+		couleursForme = "energy";
 		event.consume();
 	}
 	
@@ -260,6 +252,7 @@ public class gestionBoutonsToolbar {
 		dragboard.setContent(content);
 		aForme = energy.GetForme(eForme.SOURCE);
 		typeForme = "source";
+		couleursForme = "source";
 		event.consume();
 	}
 	
@@ -318,6 +311,12 @@ public class gestionBoutonsToolbar {
 			aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY(), event.getX(), event.getY()+aForme.getHauteur()/2);
 			aGC.strokeLine(event.getX()+aForme.getHauteur(), event.getY()+aForme.getHauteur(), event.getX(), event.getY()+aForme.getHauteur()/2);
 		}
+		Modele m = new Modele();
+		m.setTypeForme(typeForme);
+		m.setAnchorX1(event.getX());
+		m.setAnchorY1(event.getY());
+		m.setCouleursForme(couleursForme);
+		stackModele.add(m);
 		typeForme = null;
 		aForme = null;
 	}
@@ -342,6 +341,13 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void CanvasMouseReleased(MouseEvent event) {
+		Modele m = new Modele();
+		m.setTypeForme("fleche");
+		m.setAnchorX1(coordonneeXDebutFleche);
+		m.setAnchorY1(coordonneeYDebutFleche);
+		m.setAnchorX2(event.getX());
+		m.setAnchorY2(event.getY());
+		stackModele.add(m);
 		aGC = leCanvas.getGraphicsContext2D();	
 		aGC.setStroke(Color.BLACK);
 		aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
