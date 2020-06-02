@@ -2,11 +2,11 @@ package models;
 
 import java.io.File;
 
-public class FichierXML implements TypeFichier{
+public class FichierTxt implements TypeFichier{
 
 	String nomFichier = "";
 	private File myFile = new File("");
-
+	
 	@Override
 	public String getNomFichier() {
 		return nomFichier;
@@ -14,7 +14,8 @@ public class FichierXML implements TypeFichier{
 
 	@Override
 	public void setNomFichier(String s) {
-		nomFichier = s + ".xml";
+		nomFichier = s + ".txt";
+		
 	}
 	
 	@Override

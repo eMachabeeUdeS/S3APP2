@@ -26,7 +26,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import models.Fichier;
-import models.FichierTexte;
+import models.FichierTxt;
 import models.FichierXML;
 import models.Forme;
 import models.FormeFactory;
@@ -110,42 +110,34 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void btnSaveClick(ActionEvent event) {
-		if(etat.getEtat() == "XML file State") {
-			fichier = new FichierXML();
+		fichier = new Fichier();
+		if(etat.getEtat() == "XML file State" && file_dir.getText() != null) {
+			fichier.setTypeFichierXML(file_dir.getText());
 		}
-		else if(etat.getEtat() == "TXT file State") {
-			fichier = new FichierTexte();
+		else if(etat.getEtat() == "TXT file State" && file_dir.getText() != null) {
+			fichier.setTypeFichierTXT(file_dir.getText());
 		}
 		else {
 			return;
 		}
-		if(file_dir.getText() != null)
-		{
-			fichier.nouveauFichier(file_dir.getText());
-		}
-		else
-			return;
-		fichier.ecrireFichier(stackModele, file_dir.getText());
+
+		fichier.ecrireFichier(stackModele);
 	}
 	
 	@FXML
 	void btnLoadClick(ActionEvent event) {
-		if(etat.getEtat() == "XML file State") {
-			fichier = new FichierXML();
+		fichier = new Fichier();
+		if(etat.getEtat() == "XML file State" && file_dir.getText() != null) {
+			fichier.setTypeFichierXML(file_dir.getText());
 		}
-		else if(etat.getEtat() == "TXT file State") {
-			fichier = new FichierTexte();
-		}
-		else {
-			return;
-		}
-		if(file_dir.getText() != null)
-		{
-			fichier.nouveauFichier(file_dir.getText());
+		else if(etat.getEtat() == "TXT State" && file_dir.getText() != null) {
+			fichier.setTypeFichierTXT(file_dir.getText());
 		}
 		else {
 			return;
 		}
+
+		aGC = leCanvas.getGraphicsContext2D();
 		stackModele = fichier.lireFichier(stackModele, file_dir.getText(), aGC, leCanvas.getWidth(), leCanvas.getHeight());
 		
 	}
