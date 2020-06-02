@@ -278,7 +278,7 @@ public class gestionBoutons {
 			{		
 				aGC.strokeLine(event.getX(), event.getY(), event.getX()-(longueur*Math.cos(angleFleche1)), event.getY()-(longueur*Math.sin(angleFleche1)));
 				aGC.strokeLine(event.getX(), event.getY(), event.getX()-(longueur*Math.cos(angleFleche2)), event.getY()-(longueur*Math.sin(angleFleche2)));
-				if (etat.getEtat() == "Etat Red Arrows")
+				if (etat.getEtat() == "Etat Black Arrows")
 				{
 					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche+(longueur*Math.cos(angleFleche1)), coordonneeYDebutFleche+(longueur*Math.sin(angleFleche1)));
 					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche+(longueur*Math.cos(angleFleche2)), coordonneeYDebutFleche+(longueur*Math.sin(angleFleche2)));
@@ -290,7 +290,7 @@ public class gestionBoutons {
 			{
 				aGC.strokeLine(event.getX(), event.getY(), event.getX()+(longueur*Math.cos(angleFleche1)), event.getY()+(longueur*Math.sin(angleFleche1)));
 				aGC.strokeLine(event.getX(), event.getY(), event.getX()+(longueur*Math.cos(angleFleche2)), event.getY()+(longueur*Math.sin(angleFleche2)));
-				if (etat.getEtat() == "Etat Red Arrows")
+				if (etat.getEtat() == "Etat Black Arrows")
 				{
 					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche-(longueur*Math.cos(angleFleche1)), coordonneeYDebutFleche-(longueur*Math.sin(angleFleche1)));
 					aGC.strokeLine(coordonneeXDebutFleche, coordonneeYDebutFleche, coordonneeXDebutFleche-(longueur*Math.cos(angleFleche2)), coordonneeYDebutFleche-(longueur*Math.sin(angleFleche2)));
