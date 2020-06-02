@@ -176,6 +176,18 @@ public class gestionBoutonsToolbar {
 	}
 	
 	@FXML
+	void btnRedArrowClick (ActionEvent event) {
+	etat = new RedArrowState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void btnBlackArrowClick (ActionEvent event) {
+	etat = new BlackArrowState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
 	void CarreEnergyDragDetected(MouseEvent event) {
 		Dragboard dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);
 		ClipboardContent content = new ClipboardContent();

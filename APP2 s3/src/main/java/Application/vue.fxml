@@ -77,11 +77,11 @@
                                       <items>
                                         <MenuItem mnemonicParsing="false">
                                              <graphic>
-                                                <Button fx:id="btnRedArrow" mnemonicParsing="false" text="Red Arrow" />
+                                                <Button fx:id="btnRedArrow" mnemonicParsing="false" onAction="#btnRedArrowClick" text="Red Arrow" />
                                              </graphic></MenuItem>
                                         <MenuItem mnemonicParsing="false">
                                              <graphic>
-                                                <Button fx:id="btnBlackArrow" mnemonicParsing="false" text="Black Arrow" />
+                                                <Button fx:id="btnBlackArrow" mnemonicParsing="false" onAction="#btnBlackArrowClick" text="Black Arrow" />
                                              </graphic></MenuItem>
                                       </items>
                                     </MenuButton>
