@@ -188,6 +188,36 @@ public class gestionBoutonsToolbar {
 	}
 	
 	@FXML
+	void undoClick (ActionEvent event) {
+	etat = new UndoState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void redoClick (ActionEvent event) {
+	etat = new RedoState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void closeClick (ActionEvent event) {
+	etat = new CloseState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void deleteClick (ActionEvent event) {
+	etat = new DeleteState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
+	void aboutClick (ActionEvent event) {
+	etat = new AboutState();
+	state_id.setText(etat.editStatusBar());
+	}
+	
+	@FXML
 	void CarreEnergyDragDetected(MouseEvent event) {
 		Dragboard dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);
 		ClipboardContent content = new ClipboardContent();
