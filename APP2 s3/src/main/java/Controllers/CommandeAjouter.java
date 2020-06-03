@@ -1,13 +1,8 @@
 package Controllers;
-import java.util.Deque;
 
 import Controllers.Ressources_Controllers.InfosAjoutRetrait;
 import javafx.scene.canvas.*;
 import javafx.scene.paint.Color;
-import models.Forme;
-import models.FormeFactory.eForme;
-
-import java.util.*;
 
 public class CommandeAjouter implements Commande {
 	

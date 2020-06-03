@@ -1,7 +1,5 @@
 package Controllers;
 
-import java.util.Deque;
-
 import Controllers.Ressources_Controllers.InfosAjoutRetrait;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

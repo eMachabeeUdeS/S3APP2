@@ -1,9 +1,5 @@
 package Controllers;
 
-import models.Forme;
-
-import java.util.Deque;
-
 import Controllers.Ressources_Controllers.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

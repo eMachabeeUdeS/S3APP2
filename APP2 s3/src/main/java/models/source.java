@@ -4,14 +4,43 @@ import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.control.Label.*;
 
-public class source extends Shape {
+public class source implements Forme {
 
-	source(){
-		Ellipse e = new Ellipse(30, 14);
-		e.setFill(Color.web("#98FB98"));
-		e.setStroke(Color.web("#008000"));
-		Label l = new Label();
-		l.setText("Source");
+	private Color couleur = null;
+	private Color bordure = null;
+	private int hauteur = 0;
+	private int largeur = 0;
+	public void setHauteur(int h) {
+		hauteur = h;
+	}
+	public void setLargeur(int l) {
+		largeur = l;
+	}
+	public void setCouleur(Color c) {
+		couleur = c;
+	}
+	public void setBordure(Color b) {
+		bordure = b;
+	}
+	public int getHauteur() {
+		return hauteur;
+	}
+	public int getLargeur() {
+		return largeur;
+	}
+	public Color getCouleur() {
+		return couleur;
+	}
+	public Color getBordure() {
+		return bordure;
+	}
+	@Override
+	public void setRayon(int r) {
+		return;
+	}
+	@Override
+	public int getRayon() {
+		return 0;
 	}
 
 }
