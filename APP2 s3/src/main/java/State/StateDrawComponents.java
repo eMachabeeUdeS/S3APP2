@@ -6,11 +6,6 @@ import models.Forme;
 public class StateDrawComponents implements State{
 
 	@Override
-	public String editStatusBar() {
-		return "Draw components";
-	}
-
-	@Override
 	public String getEtat() {
 		return "Etat draw components";
 	}
@@ -101,11 +96,6 @@ public class StateDrawComponents implements State{
 	}
 
 	@Override
-	public void drawArrow() {
-		return;
-	}
-
-	@Override
 	public void setCoordonneeYDebutFleche(double c) {
 		return;
 	}
@@ -123,6 +113,11 @@ public class StateDrawComponents implements State{
 	@Override
 	public double getCoordonneeYDebutFleche() {
 		return 0;
+	}
+
+	@Override
+	public void drawArrow(GraphicsContext gc, double AnchorX, double AnchorY) {
+		return;
 	}
 
 }

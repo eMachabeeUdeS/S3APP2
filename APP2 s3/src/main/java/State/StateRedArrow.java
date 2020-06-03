@@ -12,11 +12,6 @@ public class StateRedArrow implements State{
 	int longueur = 20;
 
 	@Override
-	public String editStatusBar() {
-		return "Red arrows";
-	}
-
-	@Override
 	public String getEtat() {
 		return "Etat Red Arrows";
 	}
