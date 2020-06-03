@@ -47,6 +47,10 @@ public class CommandeRetirer implements Commande{
 		{
 			aGC.fillRect(info.getX()-1, info.getY()-1, info.getForme().getHauteur()+2, info.getForme().getLargeur()+2);
 		}	
+		else if(info.getTypeForme() == "fleche")
+		{
+			
+		}
 		
 	}
 }

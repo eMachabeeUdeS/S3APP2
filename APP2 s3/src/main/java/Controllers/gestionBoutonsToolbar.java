@@ -25,14 +25,12 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 public class gestionBoutonsToolbar {
-	State etat;
 	FormeFactory inversion = new FormeFactoryInversion();
 	FormeFactory energy = new FormeFactoryEnergy();
 	FormeFactory strategy = new FormeFactoryStrategy();
 	FormeFactory model = new FormeFactoryModel();
 	String typeForme;
-	Commande[] commandes = new Commande[4];
-	Controller controleur;
+	Controller controleur = new Controller();
 	InfosAjoutRetrait infosredo;
 	InfosAjoutRetrait infosundo;
 	Deque<InfosAjoutRetrait> redoStack = new ArrayDeque<InfosAjoutRetrait>();
@@ -120,86 +118,17 @@ public class gestionBoutonsToolbar {
 	private MenuItem undo;
 	
 	@FXML
-	void btnPlusClick (ActionEvent event) {
-	etat = new AddModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnFullscreenClick (ActionEvent event) {
-	etat = new FullscreenState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnMarkerClick (ActionEvent event) {
-	etat = new MarkerState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnMoveClick (ActionEvent event) {
-	etat = new MoveModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnCrayonClick (ActionEvent event) {
-	etat = new CrayonModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnInfoClick (ActionEvent event) {
-	etat = new InfoModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnPictureClick (ActionEvent event) {
-	etat = new PictModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnArrowClick (ActionEvent event) {
-	etat = new ArrowState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnLeftAlignmentClick (ActionEvent event) {
-	etat = new LeftAlignmentState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	
-	@FXML
-	void btnTopAlignmentClick (ActionEvent event) {
-	etat = new TopAlignmentState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
-	void btnInversionClick (ActionEvent event) {
-	etat = new InversionModeState();
-	state_id.setText(etat.editStatusBar());
-	}
-	
-	@FXML
 	void undoClick (ActionEvent event) {
-		InfosAjoutRetrait inf = new InfosAjoutRetrait(undoStack.getFirst().getTypeForme(), undoStack.getFirst().getForme(), undoStack.getFirst().getX(), undoStack.getFirst().getY());
-		Commande retirer = new CommandeRetirer();
-		retirer.execute(inf, leCanvas, aGC);
+		InfosAjoutRetrait inf = new InfosAjoutRetrait(undoStack.getFirst().getTypeForme(), undoStack.getFirst().getForme(), undoStack.getFirst().getX(), undoStack.getFirst().getY(), undoStack.getFirst().getX2(), undoStack.getFirst().getY2());
+		controleur.getCommande2().execute(inf, leCanvas, aGC);
 		redoStack.add(undoStack.getFirst());
 		undoStack.pop();
 	}
 	
 	@FXML
 	void redoClick(ActionEvent event) {
-		InfosAjoutRetrait inf = new InfosAjoutRetrait(redoStack.getFirst().getTypeForme(), redoStack.getFirst().getForme(), redoStack.getFirst().getX(), redoStack.getFirst().getY());
-		Commande ajouter = new CommandeAjouter();
-		ajouter.execute(inf, leCanvas, aGC);
+		InfosAjoutRetrait inf = new InfosAjoutRetrait(redoStack.getFirst().getTypeForme(), redoStack.getFirst().getForme(), redoStack.getFirst().getX(), redoStack.getFirst().getY(), redoStack.getFirst().getX2(), redoStack.getFirst().getY2());
+		controleur.getCommande1().execute(inf, leCanvas, aGC);
 		undoStack.add(redoStack.getFirst());
 		redoStack.pop();
 	}
@@ -294,10 +223,9 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void CanvasDragDrop(DragEvent event) {
-		InfosAjoutRetrait ajout = new InfosAjoutRetrait(typeForme, aForme, event.getX(), event.getY());
+		InfosAjoutRetrait ajout = new InfosAjoutRetrait(typeForme, aForme, event.getX(), event.getY(), 0, 0);
 		this.undoStack.add(ajout);
-		Commande ajouter = new CommandeAjouter();
-		ajouter.execute(ajout, leCanvas, aGC);
+		controleur.getCommande1().execute(ajout, leCanvas, aGC);
 		typeForme = null;
 		aForme = null;
 	}
