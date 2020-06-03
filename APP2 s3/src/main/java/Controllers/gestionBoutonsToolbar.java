@@ -35,6 +35,8 @@ public class gestionBoutonsToolbar {
 	InfosAjoutRetrait infosundo;
 	Deque<InfosAjoutRetrait> redoStack = new ArrayDeque<InfosAjoutRetrait>();
 	Deque<InfosAjoutRetrait> undoStack = new ArrayDeque<InfosAjoutRetrait>();
+	double coordonneeXDebutFleche;
+	double coordonneeYDebutFleche;
 	
 	Forme aForme;
 	GraphicsContext aGC;
@@ -121,7 +123,7 @@ public class gestionBoutonsToolbar {
 	void undoClick (ActionEvent event) {
 		InfosAjoutRetrait inf = new InfosAjoutRetrait(undoStack.getFirst().getTypeForme(), undoStack.getFirst().getForme(), undoStack.getFirst().getX(), undoStack.getFirst().getY(), undoStack.getFirst().getX2(), undoStack.getFirst().getY2());
 		controleur.getCommande2().execute(inf, leCanvas, aGC);
-		redoStack.add(undoStack.getFirst());
+		redoStack.addFirst(undoStack.getFirst());
 		undoStack.pop();
 	}
 	
@@ -129,7 +131,7 @@ public class gestionBoutonsToolbar {
 	void redoClick(ActionEvent event) {
 		InfosAjoutRetrait inf = new InfosAjoutRetrait(redoStack.getFirst().getTypeForme(), redoStack.getFirst().getForme(), redoStack.getFirst().getX(), redoStack.getFirst().getY(), redoStack.getFirst().getX2(), redoStack.getFirst().getY2());
 		controleur.getCommande1().execute(inf, leCanvas, aGC);
-		undoStack.add(redoStack.getFirst());
+		undoStack.addFirst(redoStack.getFirst());
 		redoStack.pop();
 	}
 	
@@ -224,7 +226,7 @@ public class gestionBoutonsToolbar {
 	@FXML
 	void CanvasDragDrop(DragEvent event) {
 		InfosAjoutRetrait ajout = new InfosAjoutRetrait(typeForme, aForme, event.getX(), event.getY(), 0, 0);
-		this.undoStack.add(ajout);
+		this.undoStack.addFirst(ajout);
 		controleur.getCommande1().execute(ajout, leCanvas, aGC);
 		typeForme = null;
 		aForme = null;
@@ -240,6 +242,22 @@ public class gestionBoutonsToolbar {
 	void CanvasDragOver(DragEvent event) {
 		event.acceptTransferModes(TransferMode.ANY);
 		event.consume();
+	}
+	
+	@FXML
+	void CanvasMousePressed(MouseEvent event) { //Pour dessiner une flèche
+		coordonneeXDebutFleche = event.getX();
+		coordonneeYDebutFleche = event.getY();
+	}
+	
+	@FXML
+	void CanvasMouseReleased(MouseEvent event) {
+		aForme = energy.GetForme(eForme.FLECHE);
+		InfosAjoutRetrait ajout = new InfosAjoutRetrait("fleche", aForme,coordonneeXDebutFleche, coordonneeYDebutFleche, event.getX(), event.getY());
+		undoStack.addFirst(ajout);
+		aGC = leCanvas.getGraphicsContext2D();
+		controleur.getCommande1().execute(ajout,  leCanvas, aGC);
+
 	}
 	
 }

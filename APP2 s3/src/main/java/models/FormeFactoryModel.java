@@ -1,6 +1,7 @@
 package models;
 
 import javafx.scene.paint.Color;
+import models.FormeFactory.eForme;
 
 
 public class FormeFactoryModel implements FormeFactory {
@@ -32,6 +33,9 @@ public class FormeFactoryModel implements FormeFactory {
 			f.setBordure(Color.web("#008000"));
 			f.setHauteur(30);
 			f.setLargeur(60);
+		}
+		else if (forme==eForme.FLECHE) {
+			f.setBordure(Color.BLACK);
 		}
 		else
 		{

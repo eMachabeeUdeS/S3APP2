@@ -32,6 +32,9 @@ public class FormeFactoryEnergy implements FormeFactory{
 			f.setHauteur(30);
 			f.setLargeur(60);
 		}
+		else if (forme==eForme.FLECHE) {
+			f.setBordure(Color.BLACK);
+		}
 		else
 		{
 			return null;
