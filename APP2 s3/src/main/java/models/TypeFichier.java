@@ -1,6 +1,5 @@
 package models;
 
-import java.io.File;
 
 public interface TypeFichier {
 	public String getNomFichier();

@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 
 public class Fichier{
 	
-	public TypeFichier typeFichier = new FichierXML();
+	private TypeFichier typeFichier = new FichierXML();
 	
 	public void ecrireFichier(Deque<Modele> stack) {
 		try {
