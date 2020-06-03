@@ -64,18 +64,24 @@ public class Fichier{
 			{
 				System.out.println("test");
 				GC.setFill(Color.web("#FFD700"));
-				GC.setStroke(Color.web("#FF0000"));
-				
+				GC.setStroke(Color.web("#FF0000"));	
 			}
 			if(copyStack.getFirst().getTypeForme().equals("carre"))
 			{
 				GC.strokeRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
 				GC.fillRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+40/2-4, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()+40-5, copyStack.getFirst().getAnchorY1()+40/2-4, 10, 10);
+				
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("cercle"))
 			{
 				GC.strokeOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
 				GC.fillOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+20-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()+20*2-5, copyStack.getFirst().getAnchorY1()+20-5, 10, 10);
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("double_carre"))
 			{
@@ -83,6 +89,9 @@ public class Fichier{
 				GC.fillRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
 				GC.strokeRect(copyStack.getFirst().getAnchorX1()+15, copyStack.getFirst().getAnchorY1()+15, 40, 40);
 				GC.fillRect(copyStack.getFirst().getAnchorX1()+15, copyStack.getFirst().getAnchorY1()+15, 40, 40);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+40-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()+10+40, copyStack.getFirst().getAnchorY1()+40-5, 10, 10);
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("double_cercle"))
 			{
@@ -90,18 +99,32 @@ public class Fichier{
 				GC.fillOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
 				GC.strokeOval(copyStack.getFirst().getAnchorX1()+10, copyStack.getFirst().getAnchorY1()+10, 40, 40);
 				GC.fillOval(copyStack.getFirst().getAnchorX1()+10, copyStack.getFirst().getAnchorY1()+10, 40, 40);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+20-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()+20*2+5, copyStack.getFirst().getAnchorY1()+20, 10, 10);
+			
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("rectangle_barre"))
 			{
 				GC.strokeRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 20, 40);
 				GC.fillRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 20, 40);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1()+40, copyStack.getFirst().getAnchorX1()+20, copyStack.getFirst().getAnchorY1());
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+40/2-4, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()+20-5, copyStack.getFirst().getAnchorY1()+40/2-4, 10, 10);
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("source"))
 			{
-				GC.strokeOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 20);
-				GC.fillOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 20);
-				GC.strokeText("Source", copyStack.getFirst().getAnchorX1()+20, copyStack.getFirst().getAnchorY1()+10);
+				GC.setFill(Color.web("#98FB98"));
+				GC.setStroke(Color.web("#008000"));
+				GC.strokeOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 60, 30);
+				GC.fillOval(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 60, 30);
+				GC.strokeText("Source", copyStack.getFirst().getAnchorX1()+30, copyStack.getFirst().getAnchorY1()+10);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+20/2-5, 10,10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5+40, copyStack.getFirst().getAnchorY1()+20/2-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5+40/2, copyStack.getFirst().getAnchorY1()-5+20, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5+40/2, copyStack.getFirst().getAnchorY1()-5, 10, 10);
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("carre_sup"))
 			{
@@ -109,6 +132,10 @@ public class Fichier{
 				GC.fillRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), copyStack.getFirst().getAnchorX1()+40, copyStack.getFirst().getAnchorY1()+20);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1()+40, copyStack.getFirst().getAnchorX1()+40, copyStack.getFirst().getAnchorY1()+20);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5,copyStack.getFirst().getAnchorY1()+40-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()+40-5, copyStack.getFirst().getAnchorY1()+40/2-4, 10, 10);
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("carre_inf"))
 			{
@@ -116,10 +143,17 @@ public class Fichier{
 				GC.fillRect(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), 40, 40);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1()+40, copyStack.getFirst().getAnchorY1(), copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1()+20);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1()+40, copyStack.getFirst().getAnchorY1()+40, copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1()+20);
+				GC.setFill(GC.getStroke());
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5+40, copyStack.getFirst().getAnchorY1()-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5+40, copyStack.getFirst().getAnchorY1()+40-5, 10, 10);
+				GC.fillOval(copyStack.getFirst().getAnchorX1()-5, copyStack.getFirst().getAnchorY1()+40/2-4, 10, 10);
+			
 			}
 			else if(copyStack.getFirst().getTypeForme().equals("fleche"))
 			{
+				GC.setStroke(Color.BLACK);
 				GC.strokeLine(copyStack.getFirst().getAnchorX1(), copyStack.getFirst().getAnchorY1(), copyStack.getFirst().getAnchorX2(), copyStack.getFirst().getAnchorY2());
+				GC.setFill(GC.getStroke());
 			}
 			copyStack.pop();
 		}
