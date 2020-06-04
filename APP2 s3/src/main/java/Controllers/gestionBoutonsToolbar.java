@@ -105,49 +105,71 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	void btnLoadClick(ActionEvent event) {
-		JFileChooser fileTchouser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-		fileTchouser.setDialogTitle("Choose a file");
-		fileTchouser.setAcceptAllFileFilterUsed(false);
+		JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+	 fileChooser.setDialogTitle("Choose a file");
+	 fileChooser.setAcceptAllFileFilterUsed(false);
 		FileNameExtensionFilter filterXML = new FileNameExtensionFilter("XML File", "xml");
 		FileNameExtensionFilter filterTXT = new FileNameExtensionFilter("TXT File", "txt");
-		fileTchouser.addChoosableFileFilter(filterXML);
-		fileTchouser.addChoosableFileFilter(filterTXT);
+	 fileChooser.addChoosableFileFilter(filterXML);
+	 fileChooser.addChoosableFileFilter(filterTXT);
 		
 		
-		int fileTchoused = fileTchouser.showOpenDialog(null);
+		int fileChooserStatus = fileChooser.showOpenDialog(null);
 		
-		if (fileTchoused == JFileChooser.APPROVE_OPTION) {
-			System.out.println(fileTchouser.getSelectedFile().getPath());
+		if (fileChooserStatus == JFileChooser.APPROVE_OPTION) {
+			File fileChoosed = fileChooser.getSelectedFile();
+			
+					String path = fileChoosed.getAbsolutePath();
+					String extension = path.substring(path.lastIndexOf(".") + 1, path.length());
+					String fileName = fileChoosed.getName();
+					
+					if (extension.equalsIgnoreCase("xml"))
+					{
+						etat = new XMLState();
+						fichier = new Fichier();
+						fichier.setTypeFichierXML(path);
+						aGC = leCanvas.getGraphicsContext2D();
+						stackModele = fichier.lireFichier(aGC, leCanvas.getWidth(), leCanvas.getHeight());
+					}
+					
+					if (extension.equalsIgnoreCase("txt"))
+					{
+						etat = new TXTState();
+						fichier = new Fichier();
+						fichier.setTypeFichierTXT(path);
+						aGC = leCanvas.getGraphicsContext2D();
+						stackModele = fichier.lireFichier(aGC, leCanvas.getWidth(), leCanvas.getHeight());
+					}
+					else
+					{
+						return;
+					}
 		}
 		
 	}
 	
 	@FXML
 	void btnSaveClick(ActionEvent event) {
-		JFileChooser fileTchouser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-		fileTchouser.setDialogTitle("Choose a file");
-		fileTchouser.setAcceptAllFileFilterUsed(false);
+		JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+	 fileChooser.setDialogTitle("Choose a file");
+	 fileChooser.setAcceptAllFileFilterUsed(false);
 		FileNameExtensionFilter filterXML = new FileNameExtensionFilter("XML File", "xml");
 		FileNameExtensionFilter filterTXT = new FileNameExtensionFilter("TXT File", "txt");
-		fileTchouser.addChoosableFileFilter(filterXML);
-		fileTchouser.addChoosableFileFilter(filterTXT);
+	 fileChooser.addChoosableFileFilter(filterXML);
+	 fileChooser.addChoosableFileFilter(filterTXT);
 		
 		
-		int fileTchouserStatus = fileTchouser.showSaveDialog(null);
+		int fileChooserStatus = fileChooser.showSaveDialog(null);
 		
-		if (fileTchouserStatus == JFileChooser.APPROVE_OPTION) {
-			File fileTchoused = fileTchouser.getSelectedFile();
+		if (fileChooserStatus == JFileChooser.APPROVE_OPTION) {
+			File fileChoosed = fileChooser.getSelectedFile();
 			
-					String path = fileTchoused.getAbsolutePath();
-					System.out.println(path);
+					String path = fileChoosed.getAbsolutePath();
 					String extension = path.substring(path.lastIndexOf(".") + 1, path.length());
-					System.out.println(extension);
-					String fileName = fileTchoused.getName();
-					System.out.println(fileName);
+					String fileName = fileChoosed.getName();
 					
 					if (extension.equalsIgnoreCase("xml"))
 					{
-						System.out.println("Mode XML");
 						etat = new XMLState();
 						fichier = new Fichier();
 						fichier.setTypeFichierXML(path);
@@ -156,11 +178,14 @@ public class gestionBoutonsToolbar {
 					
 					if (extension.equalsIgnoreCase("txt"))
 					{
-						System.out.println("Mode TXT");
 						etat = new TXTState();
 						fichier = new Fichier();
 						fichier.setTypeFichierTXT(path);
 						fichier.ecrireFichier(stackModele);
+					}
+					else
+					{
+						return;
 					}
 				}
 		}
