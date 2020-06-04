@@ -35,7 +35,7 @@ public class Fichier{
 	}
 
 	
-	public Deque<Modele> lireFichier(String nomFichier, GraphicsContext GC, double CanvasWidth, double CanvasHeight) {
+	public Deque<Modele> lireFichier(GraphicsContext GC, double CanvasWidth, double CanvasHeight) {
 		Deque<Modele> stack = new ArrayDeque<Modele>();
 		try {
 			System.out.println("test");
