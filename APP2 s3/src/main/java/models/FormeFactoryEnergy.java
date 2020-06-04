@@ -8,30 +8,31 @@ public class FormeFactoryEnergy implements FormeFactory{
 	public Forme GetForme(eForme forme)
 	{
 		Forme f;
-		
+		Color color = Color.web("#FFD700");
+		Color border = Color.web("#FF0000");
 		
 		if (forme==eForme.CERCLE)
 		{
 			f = new Cercle();
 			f.setRayon(20);
-			f.setCouleur(Color.web("#FFD700"));
-			f.setBordure(Color.web("#FF0000"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.CARRE)
 		{
 			f = new Carre();
 			f.setHauteur(40);
 			f.setLargeur(40);
-			f.setCouleur(Color.web("#FFD700"));
-			f.setBordure(Color.web("#FF0000"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.RECTANGLE)
 		{
 			f = new Rectangle();
 			f.setHauteur(40);
 			f.setLargeur(20);
-			f.setCouleur(Color.web("#FFD700"));
-			f.setBordure(Color.web("#FF0000"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.SOURCE)
 		{

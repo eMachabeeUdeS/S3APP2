@@ -8,29 +8,31 @@ public class FormeFactoryInversion implements FormeFactory{
 	public Forme GetForme(eForme forme)
 	{
 		Forme f;
+		Color color = Color.web("#87CEEB");
+		Color border = Color.web("#0000FF");
 		
 		if (forme==eForme.CERCLE)
 		{
 			f = new Cercle();
 			f.setRayon(20);
-			f.setCouleur(Color.web("#87CEEB"));
-			f.setBordure(Color.web("#0000FF"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.CARRE)
 		{
 			f = new Carre();
 			f.setHauteur(40);
 			f.setLargeur(40);
-			f.setCouleur(Color.web("#87CEEB"));
-			f.setBordure(Color.web("#0000FF"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.RECTANGLE)
 		{
 			f = new Rectangle();
 			f.setHauteur(40);
 			f.setLargeur(20);
-			f.setCouleur(Color.web("#87CEEB"));
-			f.setBordure(Color.web("#0000FF"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.SOURCE)
 		{
