@@ -2,6 +2,9 @@ package models;
 
 import javafx.scene.paint.Color;
 
+//This class makes part of the design pattern FACTORY together with class Cercle, class Fleche, class Rectangle, class Source,
+//class FormeFactoryEnergy, class FormeFactoryInversion, class FormeFactoryModel, class FormeFactoryStrategy, interface Forme and
+//interface FormeFactory.
 public class Carre implements Forme{
 	
 	private int hauteur = 0;

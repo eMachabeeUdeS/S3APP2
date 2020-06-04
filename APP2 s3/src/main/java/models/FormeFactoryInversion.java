@@ -1,7 +1,9 @@
 package models;
 import javafx.scene.paint.Color;
-import models.FormeFactory.eForme;
 
+//This class makes part of the design pattern FACTORY together with class Cercle, class Fleche, class Rectangle, class Source,
+//class FormeFactoryEnergy, class Carre, class FormeFactoryModel, class FormeFactoryStrategy, interface Forme and
+//interface FormeFactory.
 public class FormeFactoryInversion implements FormeFactory{
 
 	@Override

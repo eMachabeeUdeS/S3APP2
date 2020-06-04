@@ -5,6 +5,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+//This class makes part of the design pattern COMMAND together with class CommandeAjouter, class Controller and interface Commande.
+
 public class CommandeRetirer implements Commande{
 	
 	double angle = 0.785398; //45 deg en rad
