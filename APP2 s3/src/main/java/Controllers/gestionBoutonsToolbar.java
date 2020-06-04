@@ -3,28 +3,22 @@ package Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.*;
-import Controllers.*;
 import State.*;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.control.ListView;
 import models.*;
 import models.FormeFactory.eForme;
-import javafx.scene.paint.Color;
 
 public class gestionBoutonsToolbar {
 	State etat;
-	Ellipse ellipse = new Ellipse();
 	FormeFactory inversion = new FormeFactoryInversion();
 	FormeFactory energy = new FormeFactoryEnergy();
 	FormeFactory strategy = new FormeFactoryStrategy();
