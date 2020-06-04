@@ -4,9 +4,6 @@ import java.io.File;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import State.State;
-import State.TXTState;
-import State.XMLState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -16,7 +13,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
@@ -37,13 +33,11 @@ import models.FormeFactoryInversion;
 import models.FormeFactoryModel;
 import models.FormeFactoryStrategy;
 import models.Modele;
-import javax.swing.*; 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 public class gestionBoutonsToolbar {
-	State etat;
 	FormeFactory inversion = new FormeFactoryInversion();
 	FormeFactory energy = new FormeFactoryEnergy();
 	FormeFactory strategy = new FormeFactoryStrategy();
@@ -125,7 +119,6 @@ public class gestionBoutonsToolbar {
 					
 					if (extension.equalsIgnoreCase("xml"))
 					{
-						etat = new XMLState();
 						fichier = new Fichier();
 						fichier.setTypeFichierXML(path);
 						aGC = leCanvas.getGraphicsContext2D();
@@ -134,7 +127,6 @@ public class gestionBoutonsToolbar {
 					
 					if (extension.equalsIgnoreCase("txt"))
 					{
-						etat = new TXTState();
 						fichier = new Fichier();
 						fichier.setTypeFichierTXT(path);
 						aGC = leCanvas.getGraphicsContext2D();
@@ -170,7 +162,6 @@ public class gestionBoutonsToolbar {
 					
 					if (extension.equalsIgnoreCase("xml"))
 					{
-						etat = new XMLState();
 						fichier = new Fichier();
 						fichier.setTypeFichierXML(path);
 						fichier.ecrireFichier(stackModele);
@@ -178,7 +169,6 @@ public class gestionBoutonsToolbar {
 					
 					if (extension.equalsIgnoreCase("txt"))
 					{
-						etat = new TXTState();
 						fichier = new Fichier();
 						fichier.setTypeFichierTXT(path);
 						fichier.ecrireFichier(stackModele);
@@ -190,55 +180,6 @@ public class gestionBoutonsToolbar {
 				}
 		}
 	
-	
-/*	
-	@FXML
-	private TextField file_dir;
-	
-	@FXML
-	void btnSaveClick(ActionEvent event) {
-		fichier = new Fichier();
-		if(etat.getEtat() == "XML file State" && file_dir.getText() != null) {
-			fichier.setTypeFichierXML(file_dir.getText());
-		}
-		else if(etat.getEtat() == "TXT file State" && file_dir.getText() != null) {
-			fichier.setTypeFichierTXT(file_dir.getText());
-		}
-		else {
-			return;
-		}
-
-		fichier.ecrireFichier(stackModele);
-	}
-	
-	@FXML
-	void btnLoadClick(ActionEvent event) {
-		fichier = new Fichier();
-		if(etat.getEtat() == "XML file State" && file_dir.getText() != null) {
-			fichier.setTypeFichierXML(file_dir.getText());
-		}
-		else if(etat.getEtat() == "TXT file State" && file_dir.getText() != null) {
-			fichier.setTypeFichierTXT(file_dir.getText());
-		}
-		else {
-			return;
-		}
-
-		aGC = leCanvas.getGraphicsContext2D();
-		stackModele = fichier.lireFichier(file_dir.getText(), aGC, leCanvas.getWidth(), leCanvas.getHeight());
-		
-	}
-	
-	@FXML
-	void btnxmlClick(ActionEvent event) {
-		etat = new XMLState();
-	}
-	
-	@FXML
-	void btnTxtClick(ActionEvent event) {
-		etat = new TXTState();
-	}
-*/	
 	@FXML
 	void CarreEnergyDragDetected(MouseEvent event) {
 		Dragboard dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);
