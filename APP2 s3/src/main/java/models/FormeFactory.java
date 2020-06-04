@@ -5,13 +5,8 @@ public interface FormeFactory {
 	{
 		SOURCE,
 		CERCLE,
-		DEUXCARRE,
-		DEUXCERCLE,
-		CARREINF,
-		CARRESUP,
 		RECTANGLE,
 		CARRE,
-		RECTANGLEBARRE,
 		FLECHE
 	}
 	
