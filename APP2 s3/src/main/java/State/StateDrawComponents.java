@@ -3,6 +3,8 @@ package State;
 import javafx.scene.canvas.GraphicsContext;
 import models.Forme;
 
+//This class makes part of the design pattern STATE together with class StateBlackArrow, class StateRedArrow and interface
+//State.
 public class StateDrawComponents implements State{
 
 	@Override

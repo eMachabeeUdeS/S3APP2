@@ -3,6 +3,9 @@ package State;
 import javafx.scene.canvas.GraphicsContext;
 import models.Forme;
 
+//This interface makes part of the design pattern STATE together with class StateBlackArrow, class StateDrawComponents and class
+//StateRedArrow.
+
 public interface State {
 	
 	public String getEtat();

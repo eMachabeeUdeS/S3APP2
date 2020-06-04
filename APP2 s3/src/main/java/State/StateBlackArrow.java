@@ -4,6 +4,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import models.Forme;
 
+//This class makes part of the design pattern STATE together with class StateDrawComponents, class StateRedArrow and interface
+//State.
 public class StateBlackArrow implements State {
 	
 	private double coordonneeXDebutFleche;
