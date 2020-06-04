@@ -9,30 +9,32 @@ public class FormeFactoryModel implements FormeFactory {
 	@Override
 	public Forme GetForme(eForme forme)
 	{
+		Color color = Color.web("#0000FF");
+		Color border = Color.web("#0000FF");
 		Forme f;
 		
 		if (forme==eForme.CERCLE)
 		{
 			f = new Cercle();
 			f.setRayon(20);
-			f.setCouleur(Color.web("#EE82EE"));
-			f.setBordure(Color.web("#0000FF"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.CARRE)
 		{
 			f = new Carre();
 			f.setHauteur(40);
 			f.setLargeur(40);
-			f.setCouleur(Color.web("#EE82EE"));
-			f.setBordure(Color.web("#0000FF"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.RECTANGLE)
 		{
 			f = new Rectangle();
 			f.setHauteur(40);
 			f.setLargeur(20);
-			f.setCouleur(Color.web("#EE82EE"));
-			f.setBordure(Color.web("#0000FF"));
+			f.setCouleur(color);
+			f.setBordure(border);
 		}
 		else if (forme==eForme.SOURCE)
 		{
