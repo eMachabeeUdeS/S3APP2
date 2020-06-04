@@ -195,7 +195,7 @@ public class gestionBoutons {
 	void CanvasMousePressed(MouseEvent event) { //Pour dessiner une flèche
 		WritableImage image = leCanvas.snapshot(new SnapshotParameters(), null);
 		Color color = image.getPixelReader().getColor((int) event.getX(), (int) event.getY());
-		if(color.equals(Color.RED)) {
+		if(color.equals(Color.RED) || color.equals(Color.web("#008000"))) {
 				etat.setCoordonneeXDebutFleche(event.getX());
 				etat.setCoordonneeYDebutFleche(event.getY());
 		}
@@ -207,7 +207,7 @@ public class gestionBoutons {
 		WritableImage image = leCanvas.snapshot(new SnapshotParameters(), null);
 		Color color = image.getPixelReader().getColor((int) event.getX(), (int) event.getY());
 		aGC = leCanvas.getGraphicsContext2D();
-		if(color.equals(Color.RED)) {
+		if(color.equals(Color.RED) || color.equals(Color.web("#008000"))) {
 			etat.drawArrow(aGC, event.getX(), event.getY());
 		}
 		event.consume();
