@@ -24,5 +24,11 @@ public class FichierXML implements TypeFichier{
 	public void setFile() {
 		myFile = new File(nomFichier);
 	}
+	
+	@Override
+	public String getTypeFichier()
+	{
+		return "xml";
+	}
 
 }
