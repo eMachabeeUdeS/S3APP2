@@ -17,7 +17,7 @@ public class FichierTxt implements TypeFichier{
 
 	@Override
 	public void setNomFichier(String s) {
-		nomFichier = s + ".txt";
+		nomFichier = s;
 		
 	}
 	

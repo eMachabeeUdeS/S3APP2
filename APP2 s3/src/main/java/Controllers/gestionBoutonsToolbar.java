@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.File;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -36,6 +37,10 @@ import models.FormeFactoryInversion;
 import models.FormeFactoryModel;
 import models.FormeFactoryStrategy;
 import models.Modele;
+import javax.swing.*; 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 
 public class gestionBoutonsToolbar {
 	State etat;
@@ -99,6 +104,70 @@ public class gestionBoutonsToolbar {
 	private Button buttonLoad;
 	
 	@FXML
+	void btnLoadClick(ActionEvent event) {
+		JFileChooser fileTchouser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		fileTchouser.setDialogTitle("Choose a file");
+		fileTchouser.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter filterXML = new FileNameExtensionFilter("XML File", "xml");
+		FileNameExtensionFilter filterTXT = new FileNameExtensionFilter("TXT File", "txt");
+		fileTchouser.addChoosableFileFilter(filterXML);
+		fileTchouser.addChoosableFileFilter(filterTXT);
+		
+		
+		int fileTchoused = fileTchouser.showOpenDialog(null);
+		
+		if (fileTchoused == JFileChooser.APPROVE_OPTION) {
+			System.out.println(fileTchouser.getSelectedFile().getPath());
+		}
+		
+	}
+	
+	@FXML
+	void btnSaveClick(ActionEvent event) {
+		JFileChooser fileTchouser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		fileTchouser.setDialogTitle("Choose a file");
+		fileTchouser.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter filterXML = new FileNameExtensionFilter("XML File", "xml");
+		FileNameExtensionFilter filterTXT = new FileNameExtensionFilter("TXT File", "txt");
+		fileTchouser.addChoosableFileFilter(filterXML);
+		fileTchouser.addChoosableFileFilter(filterTXT);
+		
+		
+		int fileTchouserStatus = fileTchouser.showSaveDialog(null);
+		
+		if (fileTchouserStatus == JFileChooser.APPROVE_OPTION) {
+			File fileTchoused = fileTchouser.getSelectedFile();
+			
+					String path = fileTchoused.getAbsolutePath();
+					System.out.println(path);
+					String extension = path.substring(path.lastIndexOf(".") + 1, path.length());
+					System.out.println(extension);
+					String fileName = fileTchoused.getName();
+					System.out.println(fileName);
+					
+					if (extension.equalsIgnoreCase("xml"))
+					{
+						System.out.println("Mode XML");
+						etat = new XMLState();
+						fichier = new Fichier();
+						fichier.setTypeFichierXML(path);
+						fichier.ecrireFichier(stackModele);
+					}
+					
+					if (extension.equalsIgnoreCase("txt"))
+					{
+						System.out.println("Mode TXT");
+						etat = new TXTState();
+						fichier = new Fichier();
+						fichier.setTypeFichierTXT(path);
+						fichier.ecrireFichier(stackModele);
+					}
+				}
+		}
+	
+	
+/*	
+	@FXML
 	private TextField file_dir;
 	
 	@FXML
@@ -144,7 +213,7 @@ public class gestionBoutonsToolbar {
 	void btnTxtClick(ActionEvent event) {
 		etat = new TXTState();
 	}
-	
+*/	
 	@FXML
 	void CarreEnergyDragDetected(MouseEvent event) {
 		Dragboard dragboard = carre_energy.startDragAndDrop(TransferMode.ANY);

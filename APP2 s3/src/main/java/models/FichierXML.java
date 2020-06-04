@@ -17,7 +17,7 @@ public class FichierXML implements TypeFichier{
 
 	@Override
 	public void setNomFichier(String s) {
-		nomFichier = s + ".xml";
+		nomFichier = s;
 	}
 	
 	@Override
