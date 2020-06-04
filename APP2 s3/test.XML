@@ -1,1 +1,3 @@
-source 180.0 107.0 0.0 0.0 source
+carre 214.0 112.0 0.0 0.0 energy
+double_cercle 210.0 235.0 0.0 0.0 energy
+fleche 213.0 134.0 210.0 254.0 null

@@ -1,5 +1,8 @@
 package models;
 
+//This class makes part of the design pattern STRATEGY together with class Fichier, class FichierTxt, class FichierXML and interface
+//TypeFichier.
+
 public class Modele {
 	
 	private String typeForme;

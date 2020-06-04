@@ -1,6 +1,5 @@
 package models;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +8,9 @@ import java.util.Deque;
 import java.io.FileReader;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+
+//This class makes part of the design pattern STRATEGY together with class FichierTxt, class FichierXML, class Modele and interface
+//TypeFichier.
 
 public class Fichier{
 	
@@ -33,8 +35,10 @@ public class Fichier{
 	}
 
 	
-	public Deque<Modele> lireFichier(Deque<Modele> stack, String nomFichier, GraphicsContext GC, double CanvasWidth, double CanvasHeight) {
+	public Deque<Modele> lireFichier(String nomFichier, GraphicsContext GC, double CanvasWidth, double CanvasHeight) {
+		Deque<Modele> stack = new ArrayDeque<Modele>();
 		try {
+			System.out.println("test");
 			BufferedReader myFileReader = new BufferedReader(new FileReader(typeFichier.getNomFichier()));
 			String line;
 			while((line = myFileReader.readLine()) != null) {
@@ -57,12 +61,9 @@ public class Fichier{
 		GC.clearRect(0, 0, CanvasWidth, CanvasHeight);
 		Deque<Modele> copyStack = new ArrayDeque<Modele>();
 		copyStack.addAll(stack);
-		System.out.println(copyStack.getFirst().getCouleursForme());
-		System.out.println(copyStack.getFirst().getTypeForme());
 		while(!copyStack.isEmpty()) {
 			if(copyStack.getFirst().getCouleursForme().equals("energy"))
 			{
-				System.out.println("test");
 				GC.setFill(Color.web("#FFD700"));
 				GC.setStroke(Color.web("#FF0000"));	
 			}

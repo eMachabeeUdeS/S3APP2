@@ -2,6 +2,9 @@ package models;
 
 import java.io.File;
 
+//This class makes part of the design pattern STRATEGY together with class Fichier, class FichierTxt, class Modele and interface
+//TypeFichier.
+
 public class FichierXML implements TypeFichier{
 
 	String nomFichier = "";

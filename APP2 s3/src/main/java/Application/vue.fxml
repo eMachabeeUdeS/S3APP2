@@ -80,7 +80,7 @@
                                     <Button fx:id="buttonSave" mnemonicParsing="false" onAction="#btnSaveClick" text="Save" />
                                     <Button fx:id="buttonLoad" mnemonicParsing="false" onAction="#btnLoadClick" text="Load" />
                                     <TextField fx:id="file_dir" text="File Directory" />
-                                    <Button fx:id="buttonFxml" mnemonicParsing="false" onAction="#btnFxmlClick" text="FXML file" />
+                                    <Button fx:id="buttonxml" mnemonicParsing="false" onAction="#btnxmlClick" text="XML file" />
                                     <Button fx:id="buttonTxt" mnemonicParsing="false" onAction="#btnTxtClick" text="Text File" />
                                 </items>
                               </ToolBar>

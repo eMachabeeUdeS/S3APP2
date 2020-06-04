@@ -9,7 +9,7 @@ public class TXTState implements State {
 
 	@Override
 	public String getEtat() {
-		return "TXT State";
+		return "TXT file State";
 	}
 
 }

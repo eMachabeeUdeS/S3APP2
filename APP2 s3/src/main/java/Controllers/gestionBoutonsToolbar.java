@@ -3,7 +3,6 @@ package Controllers;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-import State.AddModeState;
 import State.State;
 import State.TXTState;
 import State.XMLState;
@@ -29,8 +28,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import models.Fichier;
-import models.FichierTxt;
-import models.FichierXML;
 import models.Forme;
 import models.FormeFactory;
 import models.FormeFactory.eForme;
@@ -90,9 +87,6 @@ public class gestionBoutonsToolbar {
 	private Rectangle rectangle_barre_energy;
 	
 	@FXML
-	private Button buttonPlus;
-	
-	@FXML
 	private MenuButton buttonItemSelected;
 	
 	@FXML
@@ -106,12 +100,6 @@ public class gestionBoutonsToolbar {
 	
 	@FXML
 	private TextField file_dir;
-	
-	@FXML
-	void btnPlusClick (ActionEvent event) {
-	etat = new AddModeState();
-	state_id.setText(etat.editStatusBar());
-	}
 	
 	@FXML
 	void btnSaveClick(ActionEvent event) {
@@ -135,7 +123,7 @@ public class gestionBoutonsToolbar {
 		if(etat.getEtat() == "XML file State" && file_dir.getText() != null) {
 			fichier.setTypeFichierXML(file_dir.getText());
 		}
-		else if(etat.getEtat() == "TXT State" && file_dir.getText() != null) {
+		else if(etat.getEtat() == "TXT file State" && file_dir.getText() != null) {
 			fichier.setTypeFichierTXT(file_dir.getText());
 		}
 		else {
@@ -143,12 +131,12 @@ public class gestionBoutonsToolbar {
 		}
 
 		aGC = leCanvas.getGraphicsContext2D();
-		stackModele = fichier.lireFichier(stackModele, file_dir.getText(), aGC, leCanvas.getWidth(), leCanvas.getHeight());
+		stackModele = fichier.lireFichier(file_dir.getText(), aGC, leCanvas.getWidth(), leCanvas.getHeight());
 		
 	}
 	
 	@FXML
-	void btnFxmlClick(ActionEvent event) {
+	void btnxmlClick(ActionEvent event) {
 		etat = new XMLState();
 	}
 	
