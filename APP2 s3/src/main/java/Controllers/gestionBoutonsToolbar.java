@@ -48,7 +48,6 @@ public class gestionBoutonsToolbar {
 	double coordonneeYDebutFleche;
 	Deque<Modele> stackModele = new ArrayDeque<Modele>();
 	Fichier fichier;
-	PixelReader pixelreader;
 	
 	
 	Forme aForme;
