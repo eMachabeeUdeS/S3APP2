@@ -22,11 +22,27 @@ public class Fichier{
 			copyStack.addAll(stack);
 
 			FileWriter myFileWriter = new FileWriter(typeFichier.getNomFichier());
-			while(!copyStack.isEmpty()) {
-				myFileWriter.write(copyStack.getFirst().getTypeForme() + " " + copyStack.getFirst().getAnchorX1() + " " + copyStack.getFirst().getAnchorY1() + " " +
-						copyStack.getFirst().getAnchorX2() + " " + copyStack.getFirst().getAnchorY2() + " " + copyStack.getFirst().getCouleursForme() + "\n");
-				copyStack.pop();
+			if (typeFichier.getTypeFichier().equals("txt"))
+				{
+						while(!copyStack.isEmpty()) {
+							myFileWriter.write(copyStack.getFirst().getTypeForme() + " " + copyStack.getFirst().getAnchorX1() + " " + copyStack.getFirst().getAnchorY1() + " " +
+									copyStack.getFirst().getAnchorX2() + " " + copyStack.getFirst().getAnchorY2() + " " + copyStack.getFirst().getCouleursForme() + "\n");
+							copyStack.pop();
+							}
+				}
+			if (typeFichier.getTypeFichier().equals("xml"))
+			{
+					while(!copyStack.isEmpty()) {
+						myFileWriter.write("<" + copyStack.getFirst().getTypeForme() + ">" + copyStack.getFirst().getAnchorX1() + " " + copyStack.getFirst().getAnchorY1() + " " +
+								copyStack.getFirst().getAnchorX2() + " " + copyStack.getFirst().getAnchorY2() + " " + copyStack.getFirst().getCouleursForme() + "</" + copyStack.getFirst().getTypeForme() + ">" + "\n");
+						copyStack.pop();
+						}
 			}
+			else
+			{
+				return;
+			}
+			
 			myFileWriter.close();
 			
 		} catch (IOException e) {
@@ -38,11 +54,15 @@ public class Fichier{
 	public Deque<Modele> lireFichier(GraphicsContext GC, double CanvasWidth, double CanvasHeight) {
 		Deque<Modele> stack = new ArrayDeque<Modele>();
 		try {
-			System.out.println("test");
 			BufferedReader myFileReader = new BufferedReader(new FileReader(typeFichier.getNomFichier()));
 			String line;
 			while((line = myFileReader.readLine()) != null) {
+				line = line.replaceAll("</", " ");
+				line = line.replaceAll(">", " ");
+				line = line.replaceAll("<", "");
+				System.out.println(line);
 				String[] words = line.split(" ");
+				System.out.println(words[0]);
 				Modele m = new Modele();
 				m.setTypeForme(words[0]);
 				m.setAnchorX1(Double.parseDouble(words[1]));

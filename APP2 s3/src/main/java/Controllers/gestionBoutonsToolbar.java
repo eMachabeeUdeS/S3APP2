@@ -101,10 +101,8 @@ public class gestionBoutonsToolbar {
 		JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 	 fileChooser.setDialogTitle("Choose a file");
 	 fileChooser.setAcceptAllFileFilterUsed(false);
-		FileNameExtensionFilter filterXML = new FileNameExtensionFilter("XML File", "xml");
-		FileNameExtensionFilter filterTXT = new FileNameExtensionFilter("TXT File", "txt");
-	 fileChooser.addChoosableFileFilter(filterXML);
-	 fileChooser.addChoosableFileFilter(filterTXT);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("XML or TXT File", "xml", "txt");
+	 fileChooser.addChoosableFileFilter(filter);
 		
 		
 		int fileChooserStatus = fileChooser.showOpenDialog(null);
@@ -144,10 +142,8 @@ public class gestionBoutonsToolbar {
 		JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 	 fileChooser.setDialogTitle("Choose a file");
 	 fileChooser.setAcceptAllFileFilterUsed(false);
-		FileNameExtensionFilter filterXML = new FileNameExtensionFilter("XML File", "xml");
-		FileNameExtensionFilter filterTXT = new FileNameExtensionFilter("TXT File", "txt");
-	 fileChooser.addChoosableFileFilter(filterXML);
-	 fileChooser.addChoosableFileFilter(filterTXT);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("XML or TXT File", "xml", "txt");
+	 fileChooser.addChoosableFileFilter(filter);
 		
 		
 		int fileChooserStatus = fileChooser.showSaveDialog(null);
