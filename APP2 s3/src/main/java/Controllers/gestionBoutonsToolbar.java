@@ -49,9 +49,7 @@ public class gestionBoutonsToolbar {
 	Deque<Modele> stackModele = new ArrayDeque<Modele>();
 	Fichier fichier;
 	
-	
 	Forme aForme;
-	Canvas aCanvas;
 	GraphicsContext aGC;
 	
 	@FXML
